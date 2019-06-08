@@ -34,7 +34,7 @@ public class FindOddNumberJava8 {
         // InputStreamReader is a bridge from byte streams to character streams: It reads bytes and decodes them into characters using a specified charset 
         //BufferedReader also has a readLine() method which reads a whole line 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+       // BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int l = Integer.parseInt(bufferedReader.readLine().trim());// read 1st line containing left integer
 
@@ -42,15 +42,16 @@ public class FindOddNumberJava8 {
 
         List<Integer> res = oddNumbers(l, r);
 
-        bufferedWriter.write(
+        //bufferedWriter.write(
             //Stream API is used to process collections of objects
-            res.stream()
+        String s = res.stream()
                 .map(Object::toString) // convter each object in the collection to string
-                .collect(joining("\n")) // collect allows to perform mutable fold operations (repackaging elements)  on data elements held in a Stream instance in this case joining each item with a \n 
-            + "\n"
-        );
+                .collect(joining("\n")) // collect allows to perform mutable fold operations (repackaging elements)  on data elements held in a Stream instance in this case joining each item with a \n
+                + "\n";
+        //);
 
+        System.out.println(s);
         bufferedReader.close();
-        bufferedWriter.close();
+       // bufferedWriter.close();
     }
 }
