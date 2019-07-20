@@ -8,6 +8,25 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/*
+problem question : java-arraylist_java8Streams.pdf
+
+sample input
+    55
+    41 77 74 22 44
+    1 12
+    4 37 34 36 52
+    03
+    20 22 33
+    51
+    3
+    3 4
+    3 1
+    4 3
+    5 5
+
+ */
+
 public class JavaArrayStreams {
 
     public static void main(String[] args) {
