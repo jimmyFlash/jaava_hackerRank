@@ -171,19 +171,22 @@ public class Anagrams {
             }
         }
 
-        // todo sort the hashmap alphabetically then print
-        // print all the values where size is > 1
-        // If you want to print non-anagrams,
-        // just print the values having size = 1
-        for (String s : map.keySet()) {
-            List<String> values = map.get(s);
-            if (values.size() > 1) { // anagrams
-                System.out.println("anagrams: " + values.toString().replaceAll("[\\[\\]]", ""));
-            } else if (values.size() == 1) {// non-anagrams
-                System.out.println("non-anagrams: " + values.toString().replaceAll("[\\[\\]]", ""));
+
+        Set<Map.Entry<String, List<String>>> entries = map.entrySet();
+
+        // Now let's sort HashMap by keys first
+        // all you need to do is create a TreeMap with mappings of HashMap
+        // TreeMap keeps all entries in sorted order
+        TreeMap<String, List<String>> sorted = new TreeMap<>(map);
+        Set<Map.Entry<String, List<String>>> mappings = sorted.entrySet();
+        for(Map.Entry<String, List<String>> mapping : mappings){
+           // System.out.println(mapping.getKey() + " ==> " + mapping.getValue());
+            if (mapping.getValue().size() > 1) { // anagrams
+                System.out.println("anagrams: " + mapping.getValue().toString().replaceAll("[\\[\\]]", ""));
+            } else if (mapping.getValue().size() == 1) {// non-anagrams
+                System.out.println("non-anagrams: " + mapping.getValue().toString().replaceAll("[\\[\\]]", ""));
             }
         }
-
         System.out.println("--Solution 2 <<<<<<< ");
     }
 }
