@@ -1,0 +1,2220 @@
+50
+75192 14885 71431 34461 61231 21558 55622 36011 39791 94414 37813 30293 64822 11691 19285 98683 8562 6953 82718 63941 69534 35738 45068 95556 11046 85063 30936 11640 56380 65304 87804 60980 38266 10904 43475 26649 92856 90700 54044 2437 88357 17442 73368 39722 15320 14133 47254 69024 5565 95080
+100
+Insert
+44 30237
+Insert
+34 57126
+Insert
+33 5418
+Insert
+30 66954
+Delete
+13
+Insert
+4 38588
+Insert
+38 28360
+Insert
+24 23895
+Insert
+11 17252
+Insert
+11 71596
+Insert
+40 14091
+Insert
+35 4795
+Insert
+7 17464
+Insert
+53 86360
+Delete
+14
+Insert
+46 34128
+Insert
+28 51603
+Insert
+28 8849
+Insert
+19 6186
+Insert
+19 98707
+Insert
+61 16274
+Delete
+24
+Insert
+39 97288
+Delete
+52
+Delete
+63
+Insert
+6 81894
+Insert
+47 49553
+Insert
+41 35054
+Delete
+64
+Delete
+9
+Delete
+14
+Insert
+14 59312
+Delete
+57
+Delete
+23
+Delete
+0
+Insert
+24 80902
+Delete
+29
+Insert
+27 62978
+Delete
+50
+Delete
+9
+Delete
+51
+Delete
+31
+Delete
+30
+Delete
+53
+Delete
+18
+Insert
+54 91123
+Delete
+48
+Delete
+3
+Delete
+32
+Delete
+21
+Insert
+22 23587
+Delete
+43
+Delete
+7
+Delete
+38
+Delete
+31
+Delete
+20
+Delete
+41
+Insert
+29 76024
+Insert
+48 64945
+Insert
+15 64814
+Delete
+51
+Delete
+46
+Delete
+46
+Delete
+37
+Insert
+40 35367
+Delete
+42
+Insert
+0 51387
+Insert
+36 82795
+Insert
+46 67350
+Delete
+49
+Delete
+1
+Insert
+26 89312
+Delete
+20
+Insert
+46 82353
+Delete
+7
+Insert
+45 37176
+Delete
+48
+Delete
+37
+Delete
+41
+Insert
+34 31705
+Delete
+5
+Insert
+21 63912
+Insert
+14 73658
+Delete
+39
+Insert
+46 13825
+Delete
+11
+Delete
+10
+Insert
+20 7286
+Delete
+0
+Delete
+36
+Insert
+17 78144
+Delete
+27
+Delete
+12
+Delete
+10
+Insert
+23 6220
+Insert
+24 55859
+Delete
+29
+Delete
+9
+Insert
+29 56901
+Insert
+18 10362
+
+
+[71431, 34461, 61231, 81894, 17464, 71596, 17252, 59312, 64822, 73658, 6953, 82718, 35738, 23587, 78144, 23895, 62978, 7286, 10362, 63912, 11046, 8849, 89312, 6220, 55859, 85063, 56380, 66954, 76024, 35054, 56901, 60980, 38266, 31705, 82795, 5418, 28360, 35367, 34128, 39722, 67350, 37176, 82353, 13825, 15320, 5565]
+
+>>> ================================ RESTART ================================
+>>>
+10
+500
+29930 2266 77972 59964 29081 28796 18570 35097 2171 12638 66850 24784 34183 45176 37370 3738 34965 98868 13486 73478 67444 67972 64054 55511 24722 34781 6436 14714 3660 23938 52717 6694 17569 57911 22336 5863 98358 37688 1847 96128 80875 12780 43590 86363 88335 16662 66204 41027 83515 92128 74421 62812 33192 22711 15492 26016 19117 88737 11622 53854 79103 40934 74597 37512 62428 53999 16627 37211 35895 84985 89677 5024 29125 10254 67990 51495 73152 68050 70999 14800 29757 17735 45954 69052 59519 14604 97376 71506 52936 57282 46555 52536 88570 66048 59821 63322 6504 74271 81228 52293 380 52382 32945 78850 6131 58686 42270 74378 65807 70473 67487 34779 43821 79340 74140 54943 26138 61368 23572 38502 24153 30457 48849 49130 97029 53559 40151 48865 33374 91092 33336 61792 20582 57617 39726 18490 58013 53396 14693 42225 39317 15352 15778 99621 4616 98999 12096 16470 48044 61627 87833 40201 70147 43512 94240 31823 4062 96629 61004 78430 52624 29688 79415 90277 78111 85054 22727 80901 40573 28776 67842 96599 19554 57115 99185 5929 98411 35743 71996 25138 25107 64652 22768 75128 76466 84198 58112 82277 22097 98468 34317 14457 903 585 77227 83192 3127 92138 14001 84457 59679 83851 17880 63692 42041 44007 47244 38564 35905 32142 4833 82672 23914 79051 97682 34344 37815 1832 47262 43602 62585 19246 54035 76799 35874 8565 70332 84873 59946 15727 51694 26376 93182 86259 86540 30887 74411 25683 99320 44018 83202 17872 6931 17047 45236 62993 88655 73825 59357 18086 27318 9551 55550 71577 27506 59332 75338 53307 72481 60425 78116 55099 13956 68235 13591 32371 26393 47708 87618 83116 7901 14829 45427 3339 74242 70366 51665 25901 49782 60740 36422 23301 52996 42372 5548 16241 24930 12804 46402 78293 98268 31665 56047 14054 84446 91663 22554 97565 2169 33277 84043 58449 17513 60180 23847 61357 20984 40335 18416 46110 72909 96134 7621 15814 18606 32619 69950 96816 40355 14436 96930 40790 28635 34027 13324 20670 87748 34843 59048 21944 37942 92147 48313 51532 10523 16656 40903 95836 7649 93475 50768 94564 37972 17226 99120 27941 98843 69611 31806 29137 60475 58358 41131 96364 34459 61264 76722 69354 59957 43398 16927 48049 17605 84094 16038 39585 88335 94182 22934 75084 54755 1941 75528 62064 5128 42024 69593 29486 43592 18683 98568 20482 58885 53311 54258 9297 28578 96443 59584 67811 4355 17525 4135 16937 53975 81920 96772 40958 20176 19220 21659 74263 97114 7673 39834 16423 94250 36409 81858 21644 88890 85311 66967 44019 96440 45764 5069 38752 15566 32061 44120 72747 33807 52649 89763 38117 57866 80357 62947 437 47154 99162 64041 41197 90934 40323 12853 74906 53490 35434 4365 6468 28719 67411 2490 95078 67168 81598 21901 39663 65375 39319 34460 35343 26403 54544 27131 12383 41014 94982 78268 57791 95942 75573 54060 14063 36960 18617 38068 6784 76091 21197 98066 96438 78819 31857 68561 13890 49323 98255 28986 15771 34170 82771 60173 65659 60465 56905 23662 31589 62325 89976 18677 45133 23568 47245 67814 89827 27130 14785
+1000
+Insert
+15 72750
+Insert
+441 58
+Delete
+501
+Insert
+267 79598
+Delete
+82
+Insert
+449 57044
+Insert
+318 44517
+Delete
+413
+Insert
+117 83403
+Insert
+429 46806
+Insert
+283 32167
+Delete
+123
+Insert
+61 69497
+Insert
+134 1382
+Delete
+153
+Insert
+78 27042
+Delete
+372
+Delete
+94
+Insert
+103 92449
+Insert
+266 70640
+Insert
+298 88011
+Insert
+378 41993
+Insert
+233 81437
+Delete
+110
+Insert
+359 82396
+Insert
+410 63145
+Delete
+463
+Insert
+275 99703
+Insert
+432 16747
+Delete
+168
+Delete
+151
+Insert
+79 84811
+Delete
+393
+Delete
+3
+Insert
+354 8294
+Delete
+143
+Insert
+421 93600
+Insert
+59 96682
+Delete
+39
+Delete
+426
+Insert
+17 68197
+Insert
+236 549
+Delete
+297
+Delete
+180
+Insert
+74 21766
+Insert
+306 63701
+Delete
+139
+Delete
+103
+Insert
+336 8035
+Delete
+377
+Insert
+253 79701
+Insert
+371 7857
+Insert
+347 6998
+Delete
+335
+Insert
+177 14299
+Delete
+319
+Delete
+216
+Insert
+190 41926
+Insert
+399 66595
+Delete
+9
+Insert
+270 38944
+Insert
+428 54009
+Insert
+355 51826
+Delete
+395
+Delete
+330
+Delete
+344
+Delete
+373
+Insert
+13 27874
+Delete
+417
+Insert
+163 45060
+Insert
+493 15162
+Delete
+366
+Delete
+192
+Delete
+368
+Insert
+14 95299
+Insert
+156 77239
+Insert
+177 19118
+Insert
+350 77422
+Delete
+52
+Delete
+144
+Insert
+461 46960
+Insert
+56 21987
+Insert
+487 70378
+Delete
+494
+Delete
+287
+Delete
+188
+Delete
+12
+Delete
+109
+Insert
+35 89443
+Delete
+40
+Insert
+44 81474
+Insert
+355 87544
+Insert
+464 77844
+Insert
+442 2515
+Delete
+165
+Insert
+211 87908
+Delete
+483
+Insert
+502 75239
+Insert
+349 49369
+Delete
+398
+Insert
+192 73670
+Insert
+404 36775
+Delete
+21
+Insert
+180 23051
+Delete
+153
+Insert
+259 31950
+Insert
+498 48740
+Insert
+10 95580
+Delete
+161
+Insert
+465 8123
+Insert
+279 49660
+Delete
+231
+Insert
+481 7026
+Delete
+77
+Delete
+43
+Insert
+418 23141
+Insert
+180 86438
+Delete
+22
+Delete
+125
+Delete
+22
+Delete
+8
+Insert
+197 14335
+Insert
+82 21201
+Delete
+59
+Delete
+179
+Insert
+65 21209
+Insert
+363 15195
+Delete
+496
+Insert
+4 44931
+Delete
+176
+Insert
+400 6783
+Delete
+83
+Delete
+346
+Insert
+216 14653
+Insert
+151 54220
+Delete
+114
+Insert
+257 32801
+Insert
+382 69417
+Insert
+153 39449
+Delete
+448
+Insert
+62 53576
+Insert
+371 47621
+Delete
+200
+Insert
+452 53000
+Delete
+336
+Insert
+345 27328
+Insert
+164 61736
+Insert
+111 84891
+Insert
+466 12217
+Insert
+65 45490
+Delete
+231
+Insert
+309 68884
+Insert
+71 13596
+Insert
+34 93505
+Insert
+295 8150
+Delete
+294
+Insert
+13 40696
+Insert
+408 19913
+Delete
+191
+Delete
+313
+Insert
+336 60929
+Insert
+45 96715
+Insert
+474 80986
+Insert
+225 7226
+Insert
+187 63349
+Delete
+397
+Delete
+411
+Delete
+233
+Delete
+251
+Delete
+396
+Insert
+123 22616
+Insert
+31 85091
+Delete
+97
+Delete
+416
+Delete
+424
+Insert
+416 37637
+Insert
+159 80192
+Delete
+168
+Insert
+182 56643
+Insert
+444 4929
+Delete
+9
+Insert
+63 92321
+Insert
+119 72463
+Insert
+509 80406
+Delete
+211
+Insert
+94 38321
+Delete
+101
+Insert
+361 94896
+Insert
+202 43145
+Delete
+323
+Insert
+117 36035
+Insert
+355 90593
+Delete
+321
+Delete
+97
+Delete
+422
+Delete
+401
+Insert
+51 63461
+Delete
+103
+Insert
+70 25312
+Delete
+130
+Delete
+105
+Delete
+481
+Insert
+195 38341
+Delete
+295
+Delete
+487
+Delete
+415
+Delete
+188
+Insert
+445 39005
+Delete
+24
+Delete
+79
+Delete
+54
+Insert
+102 56123
+Insert
+166 20320
+Insert
+455 45695
+Insert
+17 6534
+Delete
+144
+Delete
+126
+Insert
+23 87375
+Delete
+370
+Insert
+171 71119
+Insert
+293 4732
+Insert
+445 90909
+Delete
+352
+Insert
+199 48631
+Delete
+364
+Delete
+360
+Delete
+109
+Delete
+109
+Delete
+458
+Insert
+97 15396
+Insert
+459 95069
+Delete
+58
+Insert
+410 20406
+Delete
+371
+Delete
+213
+Insert
+359 51863
+Delete
+22
+Insert
+134 76568
+Insert
+404 65445
+Delete
+258
+Delete
+405
+Insert
+246 18024
+Delete
+204
+Delete
+80
+Insert
+256 84826
+Insert
+485 47491
+Insert
+171 88238
+Insert
+208 99455
+Delete
+408
+Insert
+423 84543
+Delete
+484
+Delete
+4
+Insert
+360 50078
+Delete
+67
+Delete
+319
+Insert
+83 18062
+Insert
+167 63862
+Delete
+272
+Insert
+326 47964
+Insert
+8 13116
+Insert
+303 20503
+Delete
+101
+Delete
+436
+Insert
+274 93604
+Delete
+433
+Delete
+471
+Delete
+405
+Delete
+70
+Insert
+458 2544
+Delete
+412
+Insert
+110 72374
+Insert
+249 30663
+Insert
+292 15200
+Delete
+218
+Insert
+166 77941
+Insert
+76 62212
+Delete
+46
+Delete
+190
+Insert
+179 80510
+Insert
+61 3056
+Insert
+83 73888
+Insert
+344 62521
+Delete
+27
+Delete
+393
+Delete
+83
+Insert
+418 3827
+Delete
+17
+Insert
+327 89671
+Delete
+25
+Delete
+516
+Delete
+410
+Insert
+514 91234
+Delete
+28
+Insert
+32 24524
+Insert
+352 58493
+Insert
+453 18387
+Insert
+383 88563
+Insert
+186 80366
+Delete
+239
+Insert
+185 14104
+Insert
+221 96069
+Delete
+447
+Delete
+443
+Insert
+65 76767
+Insert
+173 51944
+Insert
+298 18404
+Delete
+103
+Insert
+142 1269
+Delete
+286
+Insert
+24 29977
+Delete
+370
+Delete
+188
+Insert
+206 87458
+Insert
+416 28948
+Insert
+270 43084
+Insert
+319 53844
+Insert
+67 95707
+Insert
+70 98018
+Insert
+350 94606
+Delete
+368
+Delete
+520
+Delete
+370
+Insert
+15 92914
+Insert
+335 43587
+Insert
+11 59662
+Delete
+190
+Insert
+6 26177
+Delete
+355
+Insert
+230 18460
+Delete
+26
+Delete
+276
+Insert
+224 72451
+Insert
+55 67294
+Insert
+443 40415
+Insert
+90 45010
+Delete
+214
+Insert
+360 15471
+Delete
+454
+Insert
+315 8472
+Delete
+375
+Delete
+531
+Delete
+348
+Delete
+103
+Delete
+265
+Insert
+1 67017
+Insert
+359 12924
+Delete
+91
+Delete
+300
+Delete
+400
+Insert
+277 7008
+Insert
+327 33194
+Insert
+265 8413
+Delete
+167
+Insert
+103 48940
+Delete
+470
+Delete
+98
+Delete
+340
+Delete
+413
+Insert
+127 76754
+Delete
+54
+Delete
+518
+Delete
+122
+Insert
+337 91351
+Insert
+448 70697
+Delete
+60
+Insert
+306 7044
+Delete
+207
+Insert
+283 97583
+Insert
+256 71205
+Insert
+525 27216
+Insert
+186 11866
+Delete
+391
+Delete
+136
+Insert
+200 58487
+Insert
+85 17606
+Insert
+478 67632
+Delete
+520
+Insert
+322 95466
+Insert
+255 49337
+Delete
+111
+Insert
+137 80498
+Insert
+24 4323
+Delete
+526
+Delete
+246
+Insert
+135 1565
+Insert
+60 3818
+Insert
+225 21255
+Insert
+492 19031
+Delete
+34
+Delete
+435
+Insert
+293 5746
+Delete
+213
+Delete
+133
+Delete
+3
+Insert
+143 30074
+Delete
+174
+Delete
+369
+Insert
+287 41947
+Insert
+74 89103
+Delete
+7
+Delete
+234
+Insert
+164 61362
+Insert
+10 70403
+Delete
+87
+Delete
+286
+Insert
+205 83877
+Delete
+480
+Insert
+357 36364
+Delete
+92
+Insert
+132 77956
+Delete
+312
+Delete
+336
+Insert
+98 95498
+Insert
+7 63259
+Insert
+21 66837
+Insert
+471 7780
+Delete
+307
+Delete
+385
+Delete
+375
+Delete
+132
+Delete
+411
+Delete
+160
+Insert
+210 44930
+Delete
+215
+Delete
+493
+Delete
+500
+Insert
+31 77363
+Insert
+291 72328
+Insert
+14 41363
+Insert
+116 79821
+Insert
+519 77104
+Delete
+453
+Delete
+288
+Insert
+232 56871
+Insert
+38 31016
+Delete
+41
+Delete
+132
+Insert
+2 32517
+Insert
+390 66805
+Insert
+342 43906
+Insert
+314 9620
+Delete
+303
+Insert
+293 42668
+Delete
+280
+Delete
+336
+Insert
+364 98681
+Insert
+482 93704
+Insert
+213 58646
+Insert
+96 65109
+Delete
+161
+Insert
+259 470
+Insert
+434 30589
+Delete
+129
+Insert
+5 76155
+Delete
+280
+Delete
+246
+Insert
+522 30641
+Insert
+160 23121
+Insert
+281 68053
+Delete
+393
+Insert
+406 66083
+Insert
+317 39590
+Delete
+345
+Insert
+132 63081
+Insert
+243 16983
+Insert
+128 23344
+Insert
+1 67327
+Delete
+457
+Delete
+460
+Delete
+128
+Insert
+507 28580
+Delete
+523
+Delete
+28
+Insert
+261 48344
+Insert
+484 33640
+Delete
+55
+Delete
+195
+Delete
+182
+Delete
+18
+Insert
+457 18512
+Delete
+182
+Insert
+59 15117
+Delete
+5
+Insert
+485 98122
+Delete
+195
+Delete
+369
+Insert
+382 37103
+Delete
+312
+Insert
+140 83804
+Insert
+405 2787
+Delete
+464
+Insert
+57 55474
+Insert
+440 11249
+Insert
+154 79454
+Insert
+69 59196
+Insert
+148 75597
+Insert
+319 96410
+Delete
+254
+Insert
+6 67950
+Insert
+338 71725
+Delete
+529
+Insert
+352 39410
+Delete
+439
+Delete
+74
+Delete
+299
+Insert
+227 94056
+Delete
+100
+Insert
+391 69933
+Insert
+530 59642
+Insert
+460 30595
+Insert
+418 7466
+Delete
+148
+Delete
+16
+Insert
+362 11630
+Insert
+40 60844
+Insert
+160 7072
+Insert
+471 97578
+Insert
+274 97619
+Delete
+364
+Insert
+129 60067
+Delete
+296
+Delete
+243
+Insert
+23 65470
+Insert
+102 40767
+Delete
+196
+Delete
+342
+Delete
+34
+Delete
+254
+Delete
+482
+Delete
+272
+Delete
+289
+Insert
+130 70116
+Insert
+124 97867
+Delete
+384
+Insert
+137 41793
+Insert
+32 80324
+Delete
+368
+Delete
+112
+Insert
+187 69319
+Insert
+45 64054
+Insert
+160 66262
+Insert
+10 1630
+Delete
+224
+Insert
+194 14516
+Insert
+408 21109
+Insert
+62 14554
+Insert
+436 89077
+Insert
+91 34895
+Delete
+10
+Insert
+340 32852
+Insert
+181 20723
+Insert
+544 70211
+Delete
+264
+Delete
+312
+Insert
+132 628
+Insert
+439 39259
+Delete
+364
+Insert
+348 62244
+Insert
+346 91282
+Insert
+108 10929
+Delete
+534
+Delete
+415
+Delete
+441
+Delete
+387
+Insert
+400 13997
+Insert
+531 96143
+Insert
+2 91603
+Insert
+371 91042
+Insert
+225 18360
+Insert
+123 59202
+Delete
+189
+Insert
+486 71462
+Delete
+445
+Delete
+525
+Delete
+182
+Insert
+162 80767
+Insert
+330 92706
+Delete
+88
+Delete
+180
+Delete
+71
+Insert
+475 11860
+Delete
+277
+Insert
+223 42524
+Delete
+229
+Insert
+142 84471
+Delete
+182
+Delete
+376
+Delete
+136
+Insert
+314 23666
+Insert
+133 20583
+Delete
+79
+Insert
+294 16335
+Insert
+490 68621
+Delete
+61
+Insert
+377 58118
+Delete
+330
+Insert
+350 10320
+Insert
+70 5681
+Insert
+519 52738
+Insert
+113 76694
+Insert
+178 3046
+Insert
+136 37194
+Insert
+471 65439
+Insert
+520 94108
+Insert
+473 44392
+Insert
+172 54306
+Insert
+481 26400
+Insert
+133 35429
+Delete
+150
+Insert
+152 39325
+Insert
+270 8488
+Delete
+50
+Insert
+366 4250
+Delete
+425
+Delete
+474
+Insert
+155 29272
+Insert
+275 90854
+Delete
+95
+Insert
+373 97532
+Insert
+403 41065
+Insert
+561 49447
+Delete
+8
+Insert
+135 98593
+Delete
+420
+Insert
+469 77237
+Insert
+183 57052
+Delete
+126
+Insert
+48 33959
+Insert
+227 47508
+Delete
+312
+Insert
+156 12857
+Delete
+416
+Delete
+289
+Insert
+0 73813
+Insert
+408 55103
+Delete
+106
+Insert
+40 3228
+Delete
+512
+Delete
+335
+Insert
+512 51315
+Insert
+364 11875
+Delete
+549
+Insert
+269 60592
+Insert
+216 96151
+Insert
+444 94217
+Delete
+341
+Delete
+129
+Delete
+418
+Delete
+552
+Insert
+472 91326
+Delete
+122
+Delete
+168
+Insert
+212 63236
+Insert
+437 83225
+Delete
+503
+Delete
+279
+Insert
+59 57320
+Delete
+41
+Delete
+288
+Delete
+116
+Insert
+346 58471
+Delete
+370
+Insert
+182 47644
+Delete
+380
+Insert
+313 64809
+Delete
+415
+Delete
+207
+Delete
+223
+Delete
+380
+Delete
+449
+Insert
+411 72178
+Insert
+270 47821
+Insert
+512 49252
+Delete
+452
+Delete
+375
+Insert
+434 32727
+Delete
+452
+Delete
+351
+Insert
+193 38268
+Insert
+308 93627
+Insert
+69 49436
+Insert
+389 93123
+Delete
+254
+Delete
+177
+Insert
+349 10614
+Insert
+268 67452
+Insert
+135 55526
+Insert
+513 81987
+Delete
+378
+Insert
+71 33380
+Delete
+160
+Insert
+133 57216
+Insert
+155 3595
+Delete
+511
+Delete
+242
+Delete
+152
+Insert
+483 99280
+Delete
+37
+Delete
+537
+Insert
+126 31053
+Insert
+495 70451
+Delete
+125
+Insert
+153 98318
+Insert
+132 86517
+Delete
+515
+Insert
+156 37937
+Insert
+372 48699
+Delete
+402
+Delete
+265
+Insert
+19 21746
+Insert
+316 98013
+Delete
+251
+Delete
+63
+Delete
+85
+Insert
+299 89788
+Delete
+424
+Insert
+186 67188
+Insert
+547 33669
+Delete
+141
+Insert
+245 75076
+Insert
+160 18059
+Insert
+478 83501
+Delete
+375
+Delete
+476
+Delete
+380
+Insert
+407 46214
+Insert
+189 91935
+Insert
+26 49806
+Delete
+454
+Insert
+438 49097
+Insert
+490 1153
+Insert
+466 61415
+Delete
+198
+Delete
+392
+Delete
+561
+Delete
+151
+Insert
+421 86504
+Insert
+127 55902
+Delete
+382
+Delete
+266
+Insert
+304 44667
+Delete
+25
+Delete
+386
+Delete
+106
+Delete
+110
+Delete
+422
+Delete
+354
+Delete
+343
+Delete
+310
+Delete
+70
+Insert
+351 20762
+Delete
+118
+Delete
+110
+Insert
+505 96950
+Delete
+103
+Delete
+323
+Delete
+227
+Insert
+414 15673
+Delete
+386
+Insert
+74 50329
+Delete
+297
+Insert
+448 60621
+Insert
+233 34319
+Insert
+135 12282
+Delete
+489
+Delete
+230
+Insert
+133 78856
+Delete
+343
+Insert
+234 80089
+Insert
+196 40362
+Delete
+413
+Delete
+496
+Delete
+491
+Insert
+61 27954
+Insert
+337 17738
+Delete
+420
+Delete
+238
+Delete
+457
+Delete
+449
+Insert
+382 5458
+Insert
+540 49908
+Insert
+535 98437
+Delete
+431
+Insert
+4 90384
+Delete
+445
+Insert
+222 53797
+Insert
+487 38710
+Insert
+234 38627
+Insert
+19 62255
+Delete
+52
+Insert
+316 17848
+Insert
+153 32027
+Delete
+409
+Delete
+543
+Insert
+242 43514
+Insert
+422 62428
+Delete
+129
+Delete
+214
+Delete
+552
+Delete
+453
+Delete
+393
+Delete
+59
+Insert
+526 89435
+Delete
+546
+Insert
+545 10878
+Insert
+141 83652
+Delete
+136
+Delete
+206
+Insert
+222 93913
+Delete
+210
+Delete
+276
+Insert
+88 92458
+Insert
+216 17408
+Insert
+470 82797
+Delete
+292
+Insert
+495 7697
+Insert
+202 6824
+Delete
+73
+Insert
+165 29493
+Insert
+115 77782
+Insert
+74 35111
+Delete
+158
+Insert
+351 99490
+Delete
+546
+Insert
+484 62902
+Delete
+387
+Insert
+104 74699
+Delete
+57
+Insert
+288 99806
+Insert
+30 39643
+Insert
+279 79348
+Delete
+518
+Insert
+95 25114
+Insert
+19 16760
+Delete
+399
+Insert
+279 3411
+Delete
+241
+Insert
+86 95665
+Insert
+363 55742
+Delete
+398
+Insert
+126 97652
+Delete
+549
+Delete
+4
+Delete
+182
+Delete
+491
+Insert
+378 78290
+Insert
+252 99002
+Delete
+266
+Delete
+224
+Delete
+308
+Delete
+388
+Delete
+400
+Insert
+76 55508
+Insert
+256 48605
+Insert
+296 90617
+Delete
+302
+Delete
+490
+Delete
+58
+Insert
+239 26333
+Insert
+225 36732
+Insert
+506 1227
+Delete
+230
+Insert
+201 1532
+Insert
+224 43736
+Insert
+56 53708
+Insert
+160 65342
+Delete
+90
+Insert
+9 67488
+Delete
+118
+Delete
+388
+Delete
+448
+Insert
+140 50121
+Insert
+258 68814
+Insert
+252 96408
+Delete
+231
+Insert
+48 28324
+Insert
+175 60390
+Delete
+107
+Delete
+369
+Insert
+44 88383
+Insert
+137 13395
+Insert
+276 67572
+Insert
+38 31399
+Insert
+267 78831
+Insert
+64 92194
+Delete
+501
+Delete
+37
+Insert
+556 59817
+Insert
+333 28832
+Insert
+392 91743
+Delete
+401
+Insert
+159 81747
+Insert
+388 44902
+Delete
+251
+Delete
+557
+Insert
+185 56607
+Insert
+392 38521
+Insert
+537 62745
+Delete
+415
+Delete
+520
+Insert
+187 77523
+Delete
+553
+Insert
+259 32441
+Delete
+368
+Delete
+171
+Insert
+288 83781
+Insert
+517 11357
+Insert
+147 61635
+Delete
+171
+Insert
+21 4484
+Delete
+432
+Delete
+257
+Insert
+21 1229
+Delete
+137
+Insert
+294 69545
+Delete
+171
+Delete
+558
+Delete
+456
+Delete
+438
+Insert
+180 71193
+Delete
+249
+Delete
+66
+Delete
+335
+Insert
+114 5904
+Delete
+6
+Insert
+521 99097
+Delete
+348
+Delete
+19
+Insert
+503 65558
+Insert
+497 25166
+Delete
+415
+Insert
+527 19591
+Insert
+482 61152
+Delete
+241
+Delete
+508
+Insert
+208 88829
+Insert
+225 19080
+Insert
+71 61162
+Delete
+135
+Insert
+405 87617
+Delete
+182
+Delete
+388
+Insert
+273 95941
+Insert
+113 61514
+Delete
+23
+Delete
+469
+Delete
+394
+Delete
+62
+Insert
+527 69563
+Insert
+273 87274
+Delete
+24
+Insert
+454 85503
+Delete
+315
+Insert
+273 72639
+Insert
+53 84198
+Delete
+21
+Delete
+425
+Insert
+390 68794
+Delete
+364
+Insert
+338 56363
+Delete
+460
+Insert
+18 68799
+Delete
+391
+Insert
+487 33325
+Delete
+378
+Insert
+191 41557
+Insert
+523 35522
+Insert
+515 85914
+Insert
+199 95210
+Insert
+226 2009
+Delete
+175
+Delete
+470
+Insert
+166 6748
+Insert
+73 7537
+Delete
+183
+Delete
+146
+Delete
+403
+Insert
+59 30299
+Delete
+143
+Delete
+29
+Insert
+181 16492
+Delete
+55
+Insert
+296 54338
+Delete
+141
+Delete
+328
+Delete
+296
+Insert
+47 37114
+Insert
+288 91266
+Insert
+258 70832
+Insert
+331 84313
+Insert
+184 75878
+Insert
+545 230
+Delete
+336
+Delete
+412
+Insert
+498 89079
+Delete
+487
+Insert
+446 95385
+Insert
+421 91358
+Delete
+456
+Insert
+239 82322
+
+
+
+
+Solution
+-----------------------------------------------------------------------------------------------------------------
+71431 34461 61231 81894 17464 71596 17252 59312 64822 73658 6953 82718 35738 23587 78144 23895 62978 7286 10362 63912 11046 8849 89312 6220 55859 85063 56380 66954 76024 35054 56901 60980 38266 31705 82795 5418 28360 35367 34128 39722 67350 37176 82353 13825 15320 5565
