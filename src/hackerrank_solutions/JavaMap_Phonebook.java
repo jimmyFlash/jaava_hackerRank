@@ -31,19 +31,38 @@ public class JavaMap_Phonebook {
 class PhonebookKeep{
     private Map<String, Integer> phoneMp;
 
+    //constructor
     PhonebookKeep(){
         phoneMp = new HashMap();
     }
 
 
+    /**
+     * this method add the person name and their phone number to hashmap
+     *
+     * @param name
+     * @param phone
+     */
     void addPhone(String name, Integer phone){
         phoneMp.put(name, phone);
     }
 
+    /**
+     * get for th hash map instance
+     *
+     * @return
+     */
     public Map<String, Integer> getMap(){
         return phoneMp;
     }
 
+    /**
+     * method to search for person phone number by name
+     * if found : outputs the persons name and phone number
+     * if the key is not found the method returns string
+     * @param name
+     * @return
+     */
     String printPhonDataByName(String name){
         //  for (Map.Entry me : phoneMp.entrySet()) {
         //    System.out.println("Key: "+me.getKey() + " & Value: " + me.getValue());
