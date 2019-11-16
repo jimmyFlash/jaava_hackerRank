@@ -1,26 +1,20 @@
-
-
-Exercise 4.
-
 Exercise 4.3
 This exercise reviews the flow of execution through a program with
 multiple methods. Read the following code and answer the questions below.
 
 public class Buzz {
-
-
     public static void baffle (String blimp) {
-2-        System.out.println (blimp);
+        System.out.println (blimp);\\ 2
         zippo ("ping", -5);
     }
 
     public static void zippo (String quince, int flag) {
         if (flag < 0) {
-3-             System.out.println (quince + " zoop");
+            System.out.println (quince + " zoop");\\ 3
         } else {
-1-            System.out.println ("ik");
+            System.out.println ("ik");\\ 1
             baffle (quince);
-4-            System.out.println ("boo-wa-ha-ha");
+            System.out.println ("boo-wa-ha-ha");\\ 4
         }
     }
 
@@ -40,8 +34,9 @@ more than one number next to it.
 
 c. What is the value of the parameter blimp when baffle gets invoked? ("rattle")
 
-d. What is the output of this program? ik, rattle, ping zoop, boo-wa-ha-ha
+d. What is the output of this program? (ik, rattle, ping zoop, boo-wa-ha-ha)
 
+--------------------------------------------------------------------------------------------------
 Exercise 4.4
 The first verse of the song “99 Bottles of Beer” is:
 99 bottles of beer on the wall, 99 bottles of beer, ya’ take one down, ya’
@@ -61,30 +56,37 @@ As you are developing your code, you will probably want to test it with a small 
 of verses, like “3 Bottles of Beer.”
 The purpose of this exercise is to take a problem and break it into smaller problems,
 and to solve the smaller problems by writing simple, easily-debugged methods.
+-----------------------------------------------------------------------------------------------
+
 Exercise 4.5 What is the output of the following program?
 public class Narf {
-public static void zoop (String fred, int bob) {
-System.out.println (fred);
-if (bob == 5) {
-ping ("not ");
-} else {
-System.out.println ("!");
+    public static void zoop (String fred, int bob) {
+        System.out.println (fred);
+        if (bob == 5) {
+            ping ("not ");
+        } else {
+            System.out.println ("!");
+        }
+    }
+    public static void main (String[] args) {
+        int bizz = 5;
+        int buzz = 2;
+        zoop ("just for", bizz);
+        clink (2*buzz);
+    }
+    public static void clink (int fork) {
+        System.out.print ("It’s ");
+        zoop ("breakfast ", fork) ;
+    }
+    public static void ping (String strangStrung) {
+        System.out.println ("any " + strangStrung + "more ");
+    }
 }
-}
-public static void main (String[] args) {
-int bizz = 5;
-int buzz = 2;
-zoop ("just for", bizz);
-clink (2*buzz);
-}
-public static void clink (int fork) {
-System.out.print ("It’s ");
-zoop ("breakfast ", fork) ;
-}
-public static void ping (String strangStrung) {
-System.out.println ("any " + strangStrung + "more ");
-}
-}
+- "just for"
+- "any not more "
+- "It’s breakfast "
+- "!"
+----------------------------------------------------------------------------------------------
 Exercise 4.6 Fermat’s Last Theorem says that there are no integers a, b, and c
 such that
 an + bn = cn
@@ -97,5 +99,5 @@ You should assume that there is a method named raiseToPow that takes two integer
 as arguments and that raises the first argument to the power of the second. For
 example:
 int x = raiseToPow (2, 3);
-would assign the value 8 to x, because 23 = 8.
+would assign the value 8 to x, because 2^3 = 8.
 
