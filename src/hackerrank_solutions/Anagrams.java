@@ -49,7 +49,7 @@ public class Anagrams {
 
     // Compare two words. Used in Arrays.sort() for
     // sorting an array of words
-    static class compStr implements Comparator<Word> {
+    static class CompStr implements Comparator<Word> {
         public int compare(Word a, Word b){
             return a.str.compareTo(b.str);
         }
@@ -76,7 +76,7 @@ public class Anagrams {
 
         // Step 3: Now sort the array of words in
         // dupArray
-        Arrays.sort(dupArray.array, new compStr());
+        Arrays.sort(dupArray.array, new CompStr());
         System.out.println("sorted array of sorted words: " + Arrays.stream(dupArray.array)
                 .map(word -> word.str)
                 .collect(Collectors.joining(",")) + "\n");
