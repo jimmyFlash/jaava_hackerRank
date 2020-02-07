@@ -12,26 +12,39 @@ The number of pairs is 2.
 */
 public class SockPairs {
 
-    private static int[] sockPairsCols = {1,2,1,2,1,3,2,1};
-    private static int[] sockPairsCols1 = {1,2,1,2,1,1};
-    private static int[] sockPairsCols2 = {1,2,1,2,1};
+    private static Integer[] sockPairsCols = {1,2,1,2,1,3,2,1};
+    private static Integer[] sockPairsCols1 = {1,2,1,2,1,1};
+    private static Integer[] sockPairsCols2 = {1,2,1,2,1};
 
 
     public static void main(String[] args){
 
-        SockPairs.SockProfiler sp = new SockProfiler(sockPairsCols);
+        Integer[] selectedArr  = sockPairsCols;
+        SockPairs.SockProfiler sp = new SockProfiler(selectedArr);
         Map<Integer, ArrayList<Integer>> calcPairs = sp.calcuateSockSets();
 
+        ArrayList<Integer> arrayToMutableList = new ArrayList<Integer>(Arrays.asList(selectedArr));
+
+        HashSet<Integer> indeceisSet = sp.getPairIdsSet();
         System.out.println("Pairs found are: " + sp.getPairs() +
                 " , at the following positions in the array " + sp.getPairIdsSet().toString());
+
+
+        for (Integer index = 0 ; index <  arrayToMutableList.size(); index++) {
+
+            if(!indeceisSet.contains(index)){
+                System.out.println("orphan item @index: " + index + " = " + arrayToMutableList.get(index));
+            }
+        }
+
 
     }
 
     static class SockProfiler{
 
-        int[] sockPairsCols;
+        Integer[] sockPairsCols;
 
-        public HashSet<Integer> getPairIdsSet() {
+        HashSet<Integer> getPairIdsSet() {
             return pairIdsSet;
         }
 
@@ -44,7 +57,7 @@ public class SockPairs {
 
         private int pairs = 0;
 
-        SockProfiler(int[] sockPairsCols) {
+        SockProfiler(Integer[] sockPairsCols) {
             this.sockPairsCols = sockPairsCols;
 
         }
@@ -54,14 +67,12 @@ public class SockPairs {
 
                 ArrayList<Integer> colorPr;
 
-                int sockCol = sockPairsCols[i];  //1,2,1,2,1,1
+                int sockCol = sockPairsCols[i];
                 if (matchingPairs.containsKey(sockCol)){
                     colorPr =  matchingPairs.get(sockCol);
-                    System.out.println("sockCol matching color found colorID: " + sockCol + " @index " + i);
                     colorPr.add(i);
 
                     if(colorPr.size() % 2 == 0){
-                        System.out.println("adding @ % 2: " + sockCol + " @index " + i);
                         pairs++;
                         pairIdsSet.add(colorPr.get(colorPr.size() - 1));
                         pairIdsSet.add(colorPr.get(colorPr.size() - 2));
