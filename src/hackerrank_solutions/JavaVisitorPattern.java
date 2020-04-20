@@ -56,6 +56,7 @@ class TreeNode extends Tree {
         visitor.visitNode(this);
 
         for (Tree child : children) {
+//            System.out.println(child.getClass() + "," + child.getValue());
             child.accept(visitor);
         }
     }
@@ -85,25 +86,17 @@ abstract class TreeVis
 }
 
 class SumInLeavesVisitor extends TreeVis {
-    private TreeLeaf leaf;
-    private ArrayList<TreeLeaf> children = new ArrayList<>();
-
+    int leafValue = 0;
     public int getResult() {
-        int leafValue = 0;
-        for (TreeLeaf child : children) {
-            leafValue += child.getValue();
-        }
         return leafValue;
     }
 
     public void visitNode(TreeNode node) {
-        node.accept(this);
     }
 
     public void visitLeaf(TreeLeaf leaf) {
-        this.leaf = leaf;
-        this.leaf.accept(this);
-        children.add(leaf);
+//        System.out.println(leaf.getValue());
+        leafValue += leaf.getValue();
     }
 }
 
@@ -124,137 +117,141 @@ class ProductOfRedNodesVisitor extends TreeVis {
 
     public void visitNode(TreeNode node) {
         if(node.getColor() == Color.RED) allRed.add(node);
-        node.accept(this);
+
     }
 
     public void visitLeaf(TreeLeaf leaf) {
         if(leaf.getColor() == Color.RED) allRed.add(leaf);
-        leaf.accept(this);
+
     }
 }
 
 class FancyVisitor extends TreeVis {
 
-    private ArrayList<TreeLeaf> greenLeaves = new ArrayList<>();
-    private ArrayList<TreeNode> nodesAtEvenDepth = new ArrayList<>();
-    private int diffCal = 0;
+    private int sumNodesEvnDepth = 0;
+    private int sumGrnLeaves = 0;
     public int getResult() {
-        //implement this
+        int diffCal = sumNodesEvnDepth - sumGrnLeaves;
         return Math.abs(diffCal);
     }
 
     public void visitNode(TreeNode node) {
-        if(node.getDepth() % 2 == 0) nodesAtEvenDepth.add(node);
-        node.accept(this);
+        if(node.getDepth() % 2 == 0) sumNodesEvnDepth += node.getValue();
     }
 
     public void visitLeaf(TreeLeaf leaf) {
-        if(leaf.getColor() == Color.GREEN) greenLeaves.add(leaf);
-        leaf.accept(this);
+        if(leaf.getColor() == Color.GREEN) sumGrnLeaves += leaf.getValue();
+
     }
 }
 
 public class JavaVisitorPattern {
 
+    static String[] nodeSet;
+   static  String[] nodeColors ;
+
     public static Tree solve() {
-
-/*
-5
-4 7 2 5 12
-0 1 0 0 1
-1 2
-1 3
-3 4
-3 5
-
- */
-        Scanner sc = new Scanner(System.in);
-        HashMap<Integer, List<Integer>> branchMap = new HashMap<>();
-        int depth = 0;
-        int numOfNodes = sc.nextInt();
-        int[] nodeSet = new int[numOfNodes];
-        int[] nodeColors = new int[numOfNodes];
-
-        // populate the array of node value (nodeSet) :  0 - 4
-        // populate the array of node colors (nodeColors) : 5 - 9
-        for (int i = 0 ; i < numOfNodes * 2 ; i++){
-            if(i < numOfNodes){
-                nodeSet[i] = sc.nextInt();
-                //System.out.println("i: " + i + "," + nodeSet[i]);
-            }else{
-                nodeColors[ i - numOfNodes ] = sc.nextInt();
-               // System.out.println("i - numOfNodes: " + (i - numOfNodes) + "," + nodeColors[ i - numOfNodes ]);
-            }
-        }
+        String test = "5\n" +
+                "4 7 2 5 12\n" +
+                "0 1 0 0 1\n" +
+                "1 2\n" +
+                "1 3\n" +
+                "3 4\n" +
+                "3 5";
 
 
-        sc.nextLine();
-       /* while (sc.hasNextInt()){
-            System.out.println("jjj: " + sc.nextInt());
-        }*/
+        Scanner sc = new Scanner(test);
+        HashMap<Integer, HashSet<Integer>> branchMap = new HashMap<>();
+        int lvl = 0;
+        int numOfNodes = Integer.parseInt(sc.nextLine());
 
-        for (int i = 0 ; i < 4 ; i++){
+         nodeSet = sc.nextLine().split("\\s");
+         nodeColors = sc.nextLine().split("\\s");
+
+
+        while (sc.hasNextLine()){
             String str = sc.nextLine();
             String[] treeComponent = str.split("\\s");
             int fromNode = Integer.parseInt(treeComponent[0]);
             int toNode = Integer.parseInt(treeComponent[1]);
-            if(!branchMap.containsKey(fromNode)){
-                List<Integer> branchConnection = new ArrayList<>();
-                branchConnection.add(toNode);
-                branchMap.put(fromNode, branchConnection);
-            }else{
 
-                if( !branchMap.get(fromNode).contains(toNode) ){
-                    branchMap.get(fromNode)
-                            .add(toNode);
-                }
+            HashSet<Integer> vectorStartConnections = branchMap.get(fromNode);
+            if(vectorStartConnections == null){
+                vectorStartConnections = new HashSet<>();
+                branchMap.put(fromNode, vectorStartConnections);
             }
-        }
-        TreeNode tn = null;
-        TreeNode prevTn = null;
-        for(Map.Entry<Integer, List<Integer>> mapping : branchMap.entrySet()){
-            Integer edge = mapping.getKey();
-            depth++;
+            vectorStartConnections.add(toNode);
 
-             tn = new TreeNode(
-                    nodeSet[edge -1],
-                    nodeColors[edge - 1] == 1? Color.GREEN : Color.RED,
-                    depth
-            );
-            System.out.println( "NODE --->, value: " + tn.getValue()
-                    + ", color: " + tn.getColor()
-                    + " @depth: " + tn.getDepth());
-            if(prevTn != null){
-                prevTn.addChild(tn);
-                System.out.println( "SUB-NODE <-->," + " ADD-TO: " + prevTn.getValue());
-            }
 
-            List<Integer> connectedTo = mapping.getValue();
-            prevTn = tn;
-           for (Integer b : connectedTo){
-               if(!branchMap.containsKey(b)){// make sure it's not a tree branch
-
-                   TreeLeaf tl = new TreeLeaf(
-                           nodeSet[b - 1],
-                           nodeColors[b - 1] == 1 ? Color.GREEN : Color.RED,
-                           tn.getDepth() + 1);
-                   tn.addChild(tl);
-                   System.out.println( "LEAF **, value: " + tl.getValue()
-                           + ", color: " + tl.getColor()
-                           + " @depth: " + tl.getDepth()
-                           + " ADD-TO: " + tn.getValue());
-               }
-           }
+            HashSet<Integer> vectorEndConnections = branchMap.computeIfAbsent(toNode, k -> new HashSet<>());
+            vectorEndConnections.add(fromNode);
         }
 
         sc.close();
-        return tn;
+
+//         Handle single node tree
+      /*  if (numOfNodes == 1) {
+            return new TreeLeaf(Integer.parseInt(nodeSet[0]),
+                    nodeColors[0].equals("1") ? Color.GREEN : Color.RED,
+                    depth);
+        }*/
+
+
+        TreeNode root = new TreeNode(Integer.parseInt(nodeSet[0]),
+                nodeColors[0].equals("1") ? Color.GREEN : Color.RED, lvl);
+
+        buildTree(branchMap,
+                    root,
+                ++lvl);
+
+        return root;
+    }
+
+    // <1,  [2, 3]>
+    // <2 , [1]>       -> <2 , []>
+    // <3,  [1, 4, 5]> ->  <3,  [4, 5]>
+    // <4 , [3]>       -> <4 , []>
+    // <5 , [3]>       -> <5 , []>
+    private static void buildTree(HashMap<Integer, HashSet<Integer>> map,
+                                  TreeNode parentBranch,
+                                  Integer treeNodeNm){
+
+        HashSet<Integer> connectedNodesSet = map.get(treeNodeNm);
+        //System.out.println("connection of lvl " + treeNodeNm + "," +   connectedNodesSet.toString());
+        for(Integer childNode  : connectedNodesSet){
+            HashSet<Integer> coresEndNode = map.get(childNode);
+
+            if(coresEndNode != null) {
+                coresEndNode.remove(treeNodeNm);
+                Tree tree;
+                if(!coresEndNode.isEmpty()){
+
+                    tree = new TreeNode(
+                            Integer.parseInt(nodeSet[childNode - 1]),
+                            nodeColors[childNode - 1].equals("1") ? Color.GREEN : Color.RED,
+                            parentBranch.getDepth() + 1);
+                }else{
+                    tree =  new TreeLeaf(
+                            Integer.parseInt(nodeSet[childNode - 1]),
+                            nodeColors[childNode - 1].equals("1") ? Color.GREEN : Color.RED,
+                            parentBranch.getDepth() + 1);
+                }
+                parentBranch.addChild(tree);
+
+                if(tree instanceof TreeNode){
+                    //System.out.println(childNode + "," +   tree.getDepth());
+                    buildTree( map,
+                            (TreeNode) tree,
+                            childNode);
+                }
+            }
+
+        }
     }
 
 
     public static void main(String[] args){
         Tree root = solve();
-        /*
         SumInLeavesVisitor vis1 = new SumInLeavesVisitor();
         ProductOfRedNodesVisitor vis2 = new ProductOfRedNodesVisitor();
         FancyVisitor vis3 = new FancyVisitor();
@@ -270,7 +267,72 @@ public class JavaVisitorPattern {
         System.out.println(res1);
         System.out.println(res2);
         System.out.println(res3);
-    */
     }
 
 }
+/*
+
+    static int N;
+    static HashMap<Integer, HashSet<Integer>> map = new HashMap<>();
+    static int[] values;
+    static int[] colors;
+    static boolean [] mark;
+
+
+    public static Tree solve() {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            N = Integer.valueOf(br.readLine());
+            values = new int[N];
+            colors = new int[N];
+            int parent, child;
+            String[] chunks = br.readLine().split(" ");
+            for(int i = 0; i < N; i++ ){
+                map.put(i, new HashSet<Integer>());
+                values[i] = Integer.valueOf(chunks[i]);
+            }
+            chunks = br.readLine().split(" ");
+            for(int i = 0; i < N; i++ )
+                colors[i] = Integer.valueOf(chunks[i]);
+            for(int i = 0, length = N - 1; i < length; i++){
+                chunks = br.readLine().split(" ");
+                parent = Integer.valueOf(chunks[0]) - 1;
+                child = Integer.valueOf(chunks[1]) - 1;
+
+                map.get(parent).add(child);
+                map.get(child).add(parent);
+
+            }
+            return dfs(0);
+        } catch (IOException ex) {
+
+        }
+        return null;
+    }
+
+     public static Tree dfs(int vertex){
+        if(map.get(vertex).isEmpty())
+            return new TreeLeaf(values[vertex], Color.values()[colors[vertex]], 0);
+        else{
+            mark = new boolean[N];
+            return runDfs(vertex, 0);
+        }
+    }
+
+    public static Tree runDfs(int vertex, int depth){
+        mark[vertex] = true;
+        ArrayList<Tree> childs = new ArrayList<>();
+        for(Integer e : map.get(vertex))
+            if(!mark[e])
+                childs.add(runDfs(e, depth + 1));
+        if(childs.isEmpty())
+            return new TreeLeaf(values[vertex], Color.values()[colors[vertex]], depth);
+        else{
+            TreeNode node = new TreeNode(values[vertex], Color.values()[colors[vertex]], depth);
+            for(Tree child : childs)
+                node.addChild(child);
+            return node;
+        }
+    }
+
+ */
