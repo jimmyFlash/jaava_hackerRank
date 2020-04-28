@@ -148,7 +148,11 @@ class FancyVisitor extends TreeVis {
 public class JavaVisitorPattern {
 
     static String[] nodeSet;
-   static  String[] nodeColors ;
+    static  String[] nodeColors ;
+
+    static HashMap<Integer, HashSet<Integer>> branchMap = new HashMap<>();
+    static boolean [] checkedNode;
+    static int numOfNodes;
 
     public static Tree solve() {
         String test = "5\n" +
@@ -161,93 +165,82 @@ public class JavaVisitorPattern {
 
 
         Scanner sc = new Scanner(test);
-        HashMap<Integer, HashSet<Integer>> branchMap = new HashMap<>();
-        int lvl = 0;
-        int numOfNodes = Integer.parseInt(sc.nextLine());
+        numOfNodes = Integer.parseInt(sc.nextLine());
 
+         checkedNode = new boolean[numOfNodes];
          nodeSet = sc.nextLine().split("\\s");
          nodeColors = sc.nextLine().split("\\s");
 
 
-        while (sc.hasNextLine()){
+         for (int i = 0; i < numOfNodes ; i++){
+             branchMap.put(i, new HashSet<>());
+         }
+         while (sc.hasNextLine()){
             String str = sc.nextLine();
             String[] treeComponent = str.split("\\s");
-            int fromNode = Integer.parseInt(treeComponent[0]);
-            int toNode = Integer.parseInt(treeComponent[1]);
-
-            HashSet<Integer> vectorStartConnections = branchMap.get(fromNode);
-            if(vectorStartConnections == null){
-                vectorStartConnections = new HashSet<>();
-                branchMap.put(fromNode, vectorStartConnections);
-            }
-            vectorStartConnections.add(toNode);
-
-
-            HashSet<Integer> vectorEndConnections = branchMap.computeIfAbsent(toNode, k -> new HashSet<>());
-            vectorEndConnections.add(fromNode);
-        }
-
-        sc.close();
-
-//         Handle single node tree
-      /*  if (numOfNodes == 1) {
-            return new TreeLeaf(Integer.parseInt(nodeSet[0]),
-                    nodeColors[0].equals("1") ? Color.GREEN : Color.RED,
-                    depth);
-        }*/
-
-
-        TreeNode root = new TreeNode(Integer.parseInt(nodeSet[0]),
-                nodeColors[0].equals("1") ? Color.GREEN : Color.RED, lvl);
-
-        buildTree(branchMap,
-                    root,
-                ++lvl);
-
-        return root;
+            int fromNode = Integer.parseInt(treeComponent[0]) - 1;
+            int toNode = Integer.parseInt(treeComponent[1]) - 1;
+            // System.out.println("fromNode/toNode " + fromNode + ", " + toNode);
+             branchMap.get(fromNode).add(toNode);
+             branchMap.get(toNode).add(fromNode);
+         }
+         sc.close();
+        return buildTree(0);
     }
 
-    // <1,  [2, 3]>
-    // <2 , [1]>       -> <2 , []>
-    // <3,  [1, 4, 5]> ->  <3,  [4, 5]>
-    // <4 , [3]>       -> <4 , []>
-    // <5 , [3]>       -> <5 , []>
-    private static void buildTree(HashMap<Integer, HashSet<Integer>> map,
-                                  TreeNode parentBranch,
-                                  Integer treeNodeNm){
-
-        HashSet<Integer> connectedNodesSet = map.get(treeNodeNm);
-        //System.out.println("connection of lvl " + treeNodeNm + "," +   connectedNodesSet.toString());
-        for(Integer childNode  : connectedNodesSet){
-            HashSet<Integer> coresEndNode = map.get(childNode);
-
-            if(coresEndNode != null) {
-                coresEndNode.remove(treeNodeNm);
-                Tree tree;
-                if(!coresEndNode.isEmpty()){
-
-                    tree = new TreeNode(
-                            Integer.parseInt(nodeSet[childNode - 1]),
-                            nodeColors[childNode - 1].equals("1") ? Color.GREEN : Color.RED,
-                            parentBranch.getDepth() + 1);
-                }else{
-                    tree =  new TreeLeaf(
-                            Integer.parseInt(nodeSet[childNode - 1]),
-                            nodeColors[childNode - 1].equals("1") ? Color.GREEN : Color.RED,
-                            parentBranch.getDepth() + 1);
-                }
-                parentBranch.addChild(tree);
-
-                if(tree instanceof TreeNode){
-                    //System.out.println(childNode + "," +   tree.getDepth());
-                    buildTree( map,
-                            (TreeNode) tree,
-                            childNode);
-                }
-            }
-
+    public static Tree buildTree(int vertex){
+        if(branchMap.get(vertex).isEmpty()) {// case where tree has no branches
+            return new TreeLeaf(Integer.parseInt(nodeSet[vertex]),
+                    nodeColors[vertex].equals("1") ? Color.GREEN : Color.RED,
+                    0);
+        }else{
+            return transverseTree(vertex, 0);
         }
     }
+
+
+    public static Tree transverseTree(int node, int depth){
+        checkedNode[node] = true;
+        //ArrayList<Tree> childs = new ArrayList<>();
+        ArrayList<Integer> childBranches = new ArrayList<>();
+
+        HashSet<Integer> connectedNodes = branchMap.get(node);
+//        System.out.println("-> " + connectedNodes);
+        for(Integer e : connectedNodes) {
+            //System.out.println("iteration " + e);
+            if (!checkedNode[e]) {
+                //childs.add(transverseTree(e, depth + 1));
+                childBranches.add(e);
+            }
+        }
+
+        if(childBranches.isEmpty()){
+           // System.out.println("create leaf");
+            return new TreeLeaf(Integer.parseInt(nodeSet[node]),
+                    nodeColors[node].equals("1") ? Color.GREEN : Color.RED, depth);
+        }else{
+            //System.out.println("create tree");
+            TreeNode treeNode = new TreeNode(Integer.parseInt(nodeSet[node]),
+                    nodeColors[node].equals("1") ? Color.GREEN : Color.RED, depth);
+            for(Integer s : childBranches)
+                if(s != node) treeNode.addChild(transverseTree(s, depth + 1));
+            return treeNode;
+        }
+
+       /*
+       if(childs.isEmpty()) {
+            return new TreeLeaf(Integer.parseInt(nodeSet[node]),
+                    nodeColors[node].equals("1") ? Color.GREEN : Color.RED, depth);
+        } else{
+            TreeNode treeNode = new TreeNode(Integer.parseInt(nodeSet[node]),
+                    nodeColors[node].equals("1") ? Color.GREEN : Color.RED, depth);
+            for(Tree child : childs)
+                treeNode.addChild(child);
+            return treeNode;
+        }
+        */
+    }
+
 
 
     public static void main(String[] args){
@@ -288,12 +281,13 @@ public class JavaVisitorPattern {
             int parent, child;
             String[] chunks = br.readLine().split(" ");
             for(int i = 0; i < N; i++ ){
-                map.put(i, new HashSet<Integer>());
+map.put(i, new HashSet<Integer>());
                 values[i] = Integer.valueOf(chunks[i]);
             }
             chunks = br.readLine().split(" ");
             for(int i = 0; i < N; i++ )
                 colors[i] = Integer.valueOf(chunks[i]);
+
             for(int i = 0, length = N - 1; i < length; i++){
                 chunks = br.readLine().split(" ");
                 parent = Integer.valueOf(chunks[0]) - 1;
