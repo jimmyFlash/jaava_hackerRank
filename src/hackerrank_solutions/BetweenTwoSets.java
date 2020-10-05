@@ -3,11 +3,9 @@ package hackerrank_solutions;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
 public class BetweenTwoSets {
 
@@ -19,26 +17,30 @@ public class BetweenTwoSets {
      *  1. INTEGER_ARRAY a
      *  2. INTEGER_ARRAY b
      *
-     * [2,4] -> [0,4] -> [4]
-     * [6, 4, 3] -> [6, 0, 0] -> [6]
      */
 
     public static int getTotalX(List<Integer> a, List<Integer> b) {
 
 
-        List<Integer> cond_2_list = b.stream()
-                .flatMap(n -> calcCount2(a, a.size(), n).stream())
+        List<Integer> cond_1_list = b.stream()
+                .flatMap(n -> frstArrFactorOfNum(a, a.size(), n).stream())
+                .distinct()
+                .collect(toList());
+
+        List<Integer> cond_2_list = cond_1_list.stream()
+                .flatMap(n -> numberFactorOfAllSecArr(a, a.size(), n, true).stream())
                 .distinct()
                 .collect(toList());
 
         List<Integer> cond_3_list = cond_2_list.stream()
-                .flatMap(n -> calcCount(b, b.size(), n).stream())
+                .flatMap(n -> numberFactorOfAllSecArr(b, b.size(), n, false).stream())
                 .distinct()
                 .collect(toList());
 
 
-        System.out.println( "condition 1:" + cond_2_list
-                        +  ", condition 2:" + cond_3_list
+        System.out.println( "condition 1:" + cond_1_list
+                        +  ", condition 2:" + cond_2_list
+                        +  ", condition 3:" + cond_3_list
 
                 );
         return 0;
@@ -46,15 +48,15 @@ public class BetweenTwoSets {
     }
 
 
-    private static List<Integer> calcCount(List<Integer> lst, int n, int k)
+    private static List<Integer> numberFactorOfAllSecArr(List<Integer> lst, int n, int k, boolean revrse)
     {
         List<Integer> filtered = new ArrayList<>();
 
         int i;
-        // Loop to consider every
-        // element of array
         for(i = 0; i < n; i++){
-            if ( lst.get(i) % k != 0 ) {
+            int mod = lst.get(i) % k;
+            if(revrse) mod = k % lst.get(i);
+            if ( mod != 0 ) {
                 break;
             }
         }
@@ -62,29 +64,33 @@ public class BetweenTwoSets {
         return filtered;
     }
 
-    private static List<Integer> calcCount2(List<Integer> lst, int n, int k)
+    private static List<Integer> frstArrFactorOfNum(List<Integer> lst, int n, int k)
     {
         List<Integer> filtered = new ArrayList<>();
+        int i;
 
-        // Loop to consider every
-        // element of array
-        for(int i = 0; i < n; i++){
-            if (k != 0 && lst.get(i) != 0 && k % lst.get(i) == 0 && k != lst.get(i)) {
+        for( i = 0; i < n; i++){
+            if ( k % lst.get(i) == 0 ) {
                 filtered.add(k/lst.get(i));
+            }else{
+                return new ArrayList<>();
             }
         }
         return filtered;
     }
 
 
-
-
     public static void main(String[] args) throws IOException {
 
-        String s = "2 3\n" +
-                "2 4\n" +
-                "16 32 96";
+/*
+2 3
+2 4
+16 32 96
 
+2 2
+2 6
+24 36
+*/
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
