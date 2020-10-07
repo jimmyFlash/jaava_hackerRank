@@ -21,63 +21,52 @@ public class BetweenTwoSets {
 
     public static int getTotalX(List<Integer> a, List<Integer> b) {
 
+        Integer lcmFirstList = lcmList(a);
+        Integer gcdScndList = gcdList(b);
 
-        List<Integer> cond_1_list = b.stream()
-                .flatMap(n -> frstArrFactorOfNum(a, a.size(), n).stream())
-                .distinct()
-                .collect(toList());
-
-        List<Integer> cond_2_list = cond_1_list.stream()
-                .flatMap(n -> numberFactorOfAllSecArr(a, a.size(), n, true).stream())
-                .distinct()
-                .collect(toList());
-
-        List<Integer> cond_3_list = cond_2_list.stream()
-                .flatMap(n -> numberFactorOfAllSecArr(b, b.size(), n, false).stream())
-                .distinct()
-                .collect(toList());
-
-
-        System.out.println( "condition 1:" + cond_1_list
-                        +  ", condition 2:" + cond_2_list
-                        +  ", condition 3:" + cond_3_list
-
-                );
-        return 0;
-
-    }
-
-
-    private static List<Integer> numberFactorOfAllSecArr(List<Integer> lst, int n, int k, boolean revrse)
-    {
-        List<Integer> filtered = new ArrayList<>();
-
-        int i;
-        for(i = 0; i < n; i++){
-            int mod = lst.get(i) % k;
-            if(revrse) mod = k % lst.get(i);
-            if ( mod != 0 ) {
-                break;
-            }
+        int i = lcmFirstList, j = 2 /* 0 => % 0 Arth. error, 1 => % 1 same value*/, count = 0;
+        while(i <= gcdScndList){
+           System.out.println(i + "-" + j);
+           if(gcdScndList % i == 0){ count++;}
+           i = lcmFirstList * j;
+           j++;
         }
-        if(i == n) filtered.add(k);
-        return filtered;
+        return count;
     }
 
-    private static List<Integer> frstArrFactorOfNum(List<Integer> lst, int n, int k)
-    {
-        List<Integer> filtered = new ArrayList<>();
-        int i;
+    static Integer lcmList(List<Integer> ls){
+       Integer lcmSetResult = ls.get(0);
+       for (int i = 1 ; i < ls.size() ; i++){
+           lcmSetResult =  lcm(lcmSetResult, ls.get(i ));
+       }
+       return lcmSetResult;
+    }
 
-        for( i = 0; i < n; i++){
-            if ( k % lst.get(i) == 0 ) {
-                filtered.add(k/lst.get(i));
-            }else{
-                return new ArrayList<>();
-            }
+    static  Integer gcdList(List<Integer> ls){
+        Integer gcdSetResult = ls.get(0);
+        for (int i = 1 ; i < ls.size() ; i++){
+            gcdSetResult= gcd(gcdSetResult, ls.get(i));
         }
-        return filtered;
+        return gcdSetResult;
     }
+
+    // Recursive method to return gcd of a and b
+    private static int gcd(int a, int b)
+    {
+        if (a == 0)
+            return b;
+        int gcd_ = gcd(b % a, a);
+        System.out.println("Greatest common divisor " + a + "," + b + " : " + gcd_);
+        return gcd_;
+    }
+
+    // method to return LCM of two numbers
+    static int lcm(int a, int b) {
+        int lcm = (a / gcd(a, b)) * b;
+        System.out.println("Lowest common multiple of " + a + "," + b + " : " + lcm);
+        return (a / gcd(a, b)) * b;
+    }
+
 
 
     public static void main(String[] args) throws IOException {
@@ -90,6 +79,10 @@ public class BetweenTwoSets {
 2 2
 2 6
 24 36
+
+2 2
+3 4
+24 48 (8 , 16)
 */
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
