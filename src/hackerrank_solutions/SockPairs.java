@@ -12,78 +12,87 @@ The number of pairs is 2.
 */
 public class SockPairs {
 
-    private static Integer[] sockPairsCols = {1,2,1,2,1,3,2,1};
-    private static Integer[] sockPairsCols1 = {1,2,1,2,1,1};
-    private static Integer[] sockPairsCols2 = {1,2,1,2,1};
+    private static final Integer[] sockPairsCols = {1,2,1,2,1,3,2,1};
+    private static final Integer[] sockPairsCols1 = {1,2,1,2,1,1};
+    private static final Integer[] sockPairsCols2 = {1,2,1,2,1};
 
 
     public static void main(String[] args){
 
-        Integer[] selectedArr  = sockPairsCols;
+        Integer[] selectedArr  = sockPairsCols; // socks array to test
+        ArrayList<Integer> arrayToMutableList = new ArrayList<>(Arrays.asList(selectedArr));
+
         SockPairs.SockProfiler sp = new SockProfiler(selectedArr);
-        Map<Integer, ArrayList<Integer>> calcPairs = sp.calcuateSockSets();
+        sp.calculateSockSets();
 
-        ArrayList<Integer> arrayToMutableList = new ArrayList<Integer>(Arrays.asList(selectedArr));
-
-        HashSet<Integer> indeceisSet = sp.getPairIdsSet();
-        System.out.println("Pairs found are: " + sp.getPairs() +
-                " , at the following positions in the array " + sp.getPairIdsSet().toString());
+        HashSet<Integer> indicesSet = sp.getPairIdsSet(); // the hash set of pair color positions in array
+        System.out.println("Pairs count found are: " + sp.getPairs() +
+                " , at the following positions in the array " + indicesSet.toString());
 
 
-        for (Integer index = 0 ; index <  arrayToMutableList.size(); index++) {
+        // loop through original array and compare to set entries to filter out orphan sock colors
+        for (int index = 0; index <  arrayToMutableList.size(); index++) {
 
-            if(!indeceisSet.contains(index)){
-                System.out.println("orphan item @index: " + index + " = " + arrayToMutableList.get(index));
+            if(!indicesSet.contains(index)){
+                System.out.println("orphan item @index: " + index + " ,color: " + arrayToMutableList.get(index));
             }
         }
 
 
     }
 
+    /**
+     * checks arrays and creates array of pair and orphans
+     */
     static class SockProfiler{
 
-        Integer[] sockPairsCols;
+        private int pairs = 0; // socks pairs found
+        Integer[] sockPairsCols; // stores socks pair found
+        HashSet<Integer> pairIdsSet = new HashSet<>(); // hashset to store none duplicate sock ids
+        private final Map<Integer, ArrayList<Integer>> matchingPairs = new HashMap<>(); // temp holder for pairs
 
+        // getter for the socks pair ids hashset
         HashSet<Integer> getPairIdsSet() {
             return pairIdsSet;
         }
-
-        HashSet<Integer> pairIdsSet = new HashSet<>();
-        private  Map<Integer, ArrayList<Integer>> matchingPairs = new HashMap();
 
         int getPairs() {
             return pairs;
         }
 
-        private int pairs = 0;
-
+        // constructor
         SockProfiler(Integer[] sockPairsCols) {
             this.sockPairsCols = sockPairsCols;
-
         }
 
-        Map<Integer, ArrayList<Integer>> calcuateSockSets(){
+        /**
+         * loops through array of socks
+         */
+        void calculateSockSets(){
+
             for (int i = 0 ; i < sockPairsCols.length; i++ ){
 
-                ArrayList<Integer> colorPr;
+                ArrayList<Integer> colorPair; // stores the list of matching color pairs
 
-                int sockCol = sockPairsCols[i];
-                if (matchingPairs.containsKey(sockCol)){
-                    colorPr =  matchingPairs.get(sockCol);
-                    colorPr.add(i);
+                int sockColorId = sockPairsCols[i]; // sock color id
+                // check the arraylist for matches
+                if (matchingPairs.containsKey(sockColorId)){ // check color id key in map
+                    colorPair =  matchingPairs.get(sockColorId);// get the arraylist of color pairs
+                    colorPair.add(i); // add the index to it
 
-                    if(colorPr.size() % 2 == 0){
-                        pairs++;
-                        pairIdsSet.add(colorPr.get(colorPr.size() - 1));
-                        pairIdsSet.add(colorPr.get(colorPr.size() - 2));
+                    // check each color list if the length of the pairs array is divisible by 2
+                    if(colorPair.size() % 2 == 0){
+                        pairs++; // update pairs found count
+                        // hashset will remove duplicate indices
+                        pairIdsSet.add(colorPair.get(colorPair.size() - 1)); // add last index value
+                        pairIdsSet.add(colorPair.get(colorPair.size() - 2)); // add index value before last
                     }
-                }else{
-                    colorPr = new ArrayList();
-                    colorPr.add(i);
-                    matchingPairs.put(sockCol, colorPr);
+                }else{ // no previous color id stored
+                    colorPair = new ArrayList<>(); // create new arraylist of id color
+                    colorPair.add(i); // add index position of color
+                    matchingPairs.put(sockColorId, colorPair); // add the sock color id as key and array of sock color spairs to hashmap
                 }
             }
-            return matchingPairs;
         }
     }
 
