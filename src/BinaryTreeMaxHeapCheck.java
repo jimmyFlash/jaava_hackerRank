@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class BinaryTreeMaxHeapCheck {
 
-    public static int[] testArr = new int[] {10,19,52,13,16};
+    public static int[] testArr = new int[] {1,5,10,2,3,10,1};
 
     public static String arrayChallenge(int[] arr){
 
