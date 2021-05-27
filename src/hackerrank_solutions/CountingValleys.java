@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CountingValleys {
+public class CountingValleys<priavte> {
 
 
     /*
@@ -16,53 +16,36 @@ public class CountingValleys {
      *  1. INTEGER steps
      *  2. STRING path
      */
-
-    static int seaLevelDeviation = 0;
-    static int valies = 0;
-    //UDDDUDUU
     public static int countingValleys(int steps, String path) {
 
        /* List<String> pathList= Stream.of(path.split(""))
                 .map(String::new)
                 .collect(Collectors.toList());
 
-        pathList.forEach(CountingValleys::pathCheck);*/
-        int vallies = scanVallies(path, 0);
-        System.out.println(vallies);
-        return vallies;
-    }
+        */
 
-    private static void pathCheck(String str){
-        if(str.equalsIgnoreCase("u")){
-            seaLevelDeviation++;
-        }else if(str.equalsIgnoreCase("d")){
-            seaLevelDeviation--;
+        int currCnt = 0;
+        int totalVally = 0;
+        int cnt;
+        for (int i = 0 ; i < steps; i++){
+            char curChar = path.charAt(i);
+            cnt = currCnt;
+            if(curChar == 'U') {
+                currCnt++;
+            }else if (curChar == 'D'){
+                currCnt--;
+            }
+
+            if(cnt == 0 && currCnt == -1) totalVally++;
         }
-        if(seaLevelDeviation == -1) {
-            valies++;
-        }
-    }
-
-    private static int scanVallies(String path, int cnt ){
-        int currCnt = cnt;
-
-        if(path.length() == 0) return currCnt;
-        char curChar = path.charAt(0);
-        if(curChar == 'U') {
-            currCnt++;
-        }else if (curChar == 'D'){
-            currCnt--;
-        }
-
-
-        String updatedPath = path.substring(1);
-        System.out.println(updatedPath + ", depth: " + currCnt);
-        return scanVallies( updatedPath, currCnt);
+        System.out.println("number valleys: " + totalVally);
+        return totalVally;
     }
 
 
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/vally_count_input-718.txt"));
 //        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int steps = Integer.parseInt(bufferedReader.readLine().trim());
