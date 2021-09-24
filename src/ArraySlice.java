@@ -4,15 +4,18 @@
  * have the main method return true
  */
 
-public class Test {
+public class ArraySlice {
 
     private static int max_sum = 2;
-    private static int result = 9;
-    private static int[] ar = {2, -1, 3, 4, 2};
+    private static int result = 13;
+    private static int[] ar1 = {3, 4, 6, -2, 3, 4, 5, -8};
+    private static int[] ar2 = {1, 2, -3, 4, 5, -6};
+    private static int[] ar3 = {1, 2, -3, 4, -5, -4, 4, 7};
+    private static int[] ar4 = {-1, -2, -3, -4, -5, -4, -4, -7};
 
     public static void main(String[] args) {
 
-        System.out.println(calculate(ar) == result);
+        System.out.println(calculate(ar1) == result);
 
     }
 
@@ -22,17 +25,17 @@ public class Test {
         int n = ar.length;
         for (int i = 0; i < n; ++i) {
             int item = ar[i];
-            //System.out.println("Item " + item);
             if (item < 0) {
-                if (max_sum <= current_sum) { /* if (max_sum < current_sum) { (error was here) */
+                if (max_sum < current_sum
+                ) {
                     max_sum = current_sum;
                     current_sum = 0;
-                   // System.out.println("-current max " + max_sum + ", current_sum " + current_sum);
                 }
+                System.out.println("i: " + i +"," + "item: " + item + " --current max " + max_sum + ", current_sum " + current_sum);
             } else {
                 positive = true;
                 current_sum += item;
-               // System.out.println("+current max " + max_sum + ", current_sum " + current_sum);
+                System.out.println( "i= " + i +"," + "item: " + item + " ++current max " + max_sum + ", current_sum " + current_sum);
             }
         }
         if (current_sum > max_sum) {
