@@ -1,70 +1,107 @@
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.Currency;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class SoldProductsAggregator implements EURExchangeService{
 
-    private BigDecimal sumSimpleProductsPrices;
+public class SoldProductsAggregator {
 
-    public static void main(String[] args) {
+    private final EURExchangeService exchangeService;
+
+    public static final String CURR = "EUR";
+
+
+    public  static void main(String[] args) {
 
         Stream<SoldProduct> soldProds =  Stream.of(
-                new SoldProduct("books", new BigDecimal("124567890.0987654321")),
-                new SoldProduct("cds",   new BigDecimal("124567890.0987654321")),
-                new SoldProduct("laptop", new BigDecimal("124567890.0987654321"))
+                new SoldProduct("books", new BigDecimal("12.0987654321")),
+                new SoldProduct("cds",   new BigDecimal("124.0987654321")),
+                new SoldProduct("laptop", new BigDecimal("12456.0987654321")),
+                new SoldProduct(null, new BigDecimal("124567890.0987654321")),
+                new SoldProduct("null", null),
+                null
         );
 
-        SoldProductsAggregator soldProductsAggregator = new SoldProductsAggregator();
-        BigDecimal sumPrices = soldProductsAggregator.aggregate(soldProds).sumSimpleProductsPrices;
-        soldProductsAggregator.rate(sumPrices, "EUR");
+        SoldProductsAggregator soldProductsAggregator = new SoldProductsAggregator(
+                (sumPrices, currency) -> {
+                    DecimalFormat decimalFormat = formatWithCurrency(currency);
+                    Optional<BigDecimal> finalVal = Optional.empty();
+                    try {
+                        finalVal = Optional.ofNullable((BigDecimal) decimalFormat.parse(decimalFormat.format(sumPrices)));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return finalVal;
+                }
+        );
+
+        SoldProductsAggregate soldProd = soldProductsAggregator.aggregate(soldProds);
+        System.out.println("Valid products list: " + soldProd.getSimpleProductsList());
+        System.out.println("Total sum: " + (formatWithCurrency(CURR).format(soldProd.getSumProducts())));
+        System.out.println("Total sum Euro: " + DecimalFormat.getCurrencyInstance(Locale.GERMANY)
+                .format(soldProd.getSumProducts()));
+    }
+
+    private static DecimalFormat formatWithCurrency(String currency){
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setParseBigDecimal(true);
+        Currency currencySymbol = Currency.getInstance(currency);
+        decimalFormat.setCurrency(currencySymbol);
+        return decimalFormat;
     }
 
 
-    private SoldProductsAggregator() {}
+    private SoldProductsAggregator(EURExchangeService EURExchangeService) {
+        this.exchangeService = EURExchangeService;
+    }
 
-
-
-    private SoldProductsAggregator aggregate(Stream<SoldProduct> products) {
+    private SoldProductsAggregate aggregate(Stream<SoldProduct> products) {
 
         List<SimpleSoldProduct> simpleProducts = products
-                .map(sp -> new SimpleSoldProduct (sp.getName(), sp.getPrice()) )
+                .filter(Objects::nonNull)
+                .filter(product -> product.getPrice() != null && product.getName() != null)
+                .map(sp -> new SimpleSoldProduct (sp.getName(), applyRateconversion(sp.getPrice())) )
                 .collect(Collectors.toList());
 
-
-        sumSimpleProductsPrices = simpleProducts.stream()
+        BigDecimal sumProducts =  simpleProducts.stream()
                 .map(SimpleSoldProduct::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-
-        return this;
+        return new SoldProductsAggregate(simpleProducts, sumProducts);
     }
 
-    @Override
-    public Optional<BigDecimal> rate(BigDecimal sumPrices, String currency) {
-        DecimalFormat decimalFormat = new DecimalFormat();
-        decimalFormat.setParseBigDecimal(true);
-        Currency currencySymbole = Currency.getInstance(currency);
-        decimalFormat.setCurrency(currencySymbole);
-        try {
-            decimalFormat.parse(decimalFormat.format(sumPrices));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return Optional.empty();
+    private BigDecimal applyRateconversion(BigDecimal prodPrice){
+        Optional<BigDecimal> euroRate =  this.exchangeService.rate(prodPrice,CURR);
+        return euroRate.orElse(prodPrice);
     }
 }
 
+class SoldProductsAggregate{
+
+
+    private final List<SimpleSoldProduct> simpleProductsList;
+    private final BigDecimal sumProducts;
+
+    public SoldProductsAggregate(List<SimpleSoldProduct> simpleProductsList, BigDecimal sumProducts) {
+        this.simpleProductsList = simpleProductsList;
+        this.sumProducts = sumProducts;
+    }
+
+    public List<SimpleSoldProduct> getSimpleProductsList() {
+        return simpleProductsList;
+    }
+
+    public BigDecimal getSumProducts() {
+        return sumProducts;
+    }
+}
 
 class SimpleSoldProduct{
 
-    private String name;
-    private BigDecimal price;
+    private final String name;
+    private final BigDecimal price;
 
     SimpleSoldProduct(String name, BigDecimal price){
         this.name = name;
@@ -79,6 +116,13 @@ class SimpleSoldProduct{
         return price;
     }
 
+    @Override
+    public String toString() {
+        return "SimpleSoldProduct{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
 
 class SoldProduct{
