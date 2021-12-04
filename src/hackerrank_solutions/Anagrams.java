@@ -155,16 +155,13 @@ public class Anagrams {
             Arrays.sort(letters);
             String newWord = new String(letters);
 
-            // calculate hashcode of string
-            // after sorting
             if (map.containsKey(newWord)) {
 
                 map.get(newWord).add(word);
             } else {
 
                 // This is the first time we are
-                // adding a word for a specific
-                // hashcode
+                // adding a word
                 List<String> words = new ArrayList<>();
                 words.add(word);
                 map.put(newWord, words);
