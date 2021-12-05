@@ -214,9 +214,7 @@ public class MagicSquare {
         int[][] mirrored = new int[size][size];
 
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                mirrored[i][j] = matrix[size - 1 - i][j];
-            }
+            System.arraycopy(matrix[size - 1 - i], 0, mirrored[i], 0, size);
         }
         return mirrored;
     }
@@ -235,13 +233,13 @@ public class MagicSquare {
 
     private static void printArray(int[][] arr){
         // print results
-        for (int i = 0; i < arr.length; i++) {
+        for (int[] ints : arr) {
             for (int j = 0; j < arr.length; j++) {
-                if (arr[i][j] < 10)
+                if (ints[j] < 10)
                     System.out.print(" ");  // for alignment
-                if (arr[i][j] < 100)
+                if (ints[j] < 100)
                     System.out.print(" ");  // for alignment
-                System.out.print(arr[i][j] + " ");
+                System.out.print(ints[j] + " ");
             }
             System.out.println();
         }
