@@ -1,3 +1,5 @@
+package coding_challenges;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -118,7 +120,7 @@ class SimpleSoldProduct{
 
     @Override
     public String toString() {
-        return "SimpleSoldProduct{" +
+        return "coding_challenges.SimpleSoldProduct{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
                 '}';

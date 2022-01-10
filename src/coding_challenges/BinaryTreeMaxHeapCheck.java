@@ -1,3 +1,5 @@
+package coding_challenges;
+
 import java.util.ArrayList;
 
 /**

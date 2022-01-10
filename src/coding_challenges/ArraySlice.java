@@ -1,3 +1,5 @@
+package coding_challenges;
+
 /**
  * the below code, change one line in the (calculate) method : for loop
  * so that given the array (ar) with values and max_sum with default value of 2
