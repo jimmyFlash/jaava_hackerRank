@@ -10,13 +10,14 @@ import java.util.stream.Stream;
 
 public class SoldProductsAggregator {
 
-    private final EURExchangeService exchangeService;
+    private final EURExchangeService exchangeService; // interface
 
-    public static final String CURR = "EUR";
+    public static final String CURR = "EUR"; // default currency label
 
 
     public  static void main(String[] args) {
 
+//        sample stream of SoldProduct type
         Stream<SoldProduct> soldProds =  Stream.of(
                 new SoldProduct("books", new BigDecimal("12.0987654321")),
                 new SoldProduct("cds",   new BigDecimal("124.0987654321")),
@@ -26,11 +27,17 @@ public class SoldProductsAggregator {
                 null
         );
 
+        // instantiate the SoldProductsAggregator and implement the EURExchangeService interface inline
+        // as lambda function
         SoldProductsAggregator soldProductsAggregator = new SoldProductsAggregator(
                 (sumPrices, currency) -> {
+                    // format based on currency string
                     DecimalFormat decimalFormat = formatWithCurrency(currency);
+                    // optional with default empty value
                     Optional<BigDecimal> finalVal = Optional.empty();
                     try {
+                        // try to format the sum of product prices then parse that tp produce a number
+                        // or in case null return optional empty
                         finalVal = Optional.ofNullable((BigDecimal) decimalFormat.parse(decimalFormat.format(sumPrices)));
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -46,6 +53,11 @@ public class SoldProductsAggregator {
                 .format(soldProd.getSumProducts()));
     }
 
+    /**
+     * utility method formats a BigDecimal value according to give currency iso string
+     * @param currency the currency iso string
+     * @return an instance of DecimalFormat with defined currency base
+     */
     private static DecimalFormat formatWithCurrency(String currency){
         DecimalFormat decimalFormat = new DecimalFormat();
         decimalFormat.setParseBigDecimal(true);
@@ -55,10 +67,17 @@ public class SoldProductsAggregator {
     }
 
 
+    // constructor
     private SoldProductsAggregator(EURExchangeService EURExchangeService) {
         this.exchangeService = EURExchangeService;
     }
 
+    /**
+     * processes the stream of sold products into a list of SimpleSoldProduct
+     * then calculates the sum of the SimpleSoldProduct price
+     * @param products the stream of SoldProduct
+     * @return an instance of SoldProductsAggregate with list of SimpleSoldProduct and their sum value
+     */
     private SoldProductsAggregate aggregate(Stream<SoldProduct> products) {
 
         List<SimpleSoldProduct> simpleProducts = products
@@ -74,6 +93,11 @@ public class SoldProductsAggregator {
         return new SoldProductsAggregate(simpleProducts, sumProducts);
     }
 
+    /**
+     * helper method calls the implementation of the EURExchangeService interface
+     * @param prodPrice the price property of SoldProduct instance
+     * @return a bigDecimal representing formatted number based on currency or the original price if error
+     */
     private BigDecimal applyRateconversion(BigDecimal prodPrice){
         Optional<BigDecimal> euroRate =  this.exchangeService.rate(prodPrice,CURR);
         return euroRate.orElse(prodPrice);
@@ -127,6 +151,12 @@ class SimpleSoldProduct{
     }
 }
 
+/**
+ * nested class represents a product
+ * has product name and product price in BigDecimal properties
+ * getters for both properties
+ *
+ */
 class SoldProduct{
 
     private String name;
@@ -148,6 +178,7 @@ class SoldProduct{
 
 }
 
+// interface implemented by class with single abstract interface
 interface EURExchangeService{
     Optional<BigDecimal> rate(BigDecimal sumPrices, String currency);
 }

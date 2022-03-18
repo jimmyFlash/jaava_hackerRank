@@ -16,11 +16,14 @@ enum Color {
     RED, GREEN
 }
 
+/**
+ * base tree abstract class
+ */
 abstract class Tree {
 
-    private int value;
-    private Color color;
-    private int depth;
+    private final int value; // node value
+    private final Color color; // node color either red/green
+    private final int depth; // node depth in tree
 
     public Tree(int value, Color color, int depth) {
         this.value = value;
@@ -44,8 +47,13 @@ abstract class Tree {
 
 }
 
+/**
+ * tree node
+ * each tree node is a branch that has children
+ */
 class TreeNode extends Tree {
 
+    // child nodes belonging to this tree spawning form this tree branch
     private ArrayList<Tree> children = new ArrayList<>();
 
     public TreeNode(int value, Color color, int depth) {
@@ -66,6 +74,10 @@ class TreeNode extends Tree {
     }
 }
 
+/**
+ * leaf nodes
+ * leaf nodes have no children
+ */
 class TreeLeaf extends Tree {
 
     public TreeLeaf(int value, Color color, int depth) {
@@ -77,6 +89,9 @@ class TreeLeaf extends Tree {
     }
 }
 
+/**
+ * tree visitor abstract class
+ */
 abstract class TreeVis
 {
     public abstract int getResult();
@@ -85,8 +100,8 @@ abstract class TreeVis
 
 }
 
-/*
-
+/**
+ * tree visitor that sums the number of leaves in a tree branch
  */
 class SumInLeavesVisitor extends TreeVis {
     int leafValue = 0;
@@ -103,53 +118,42 @@ class SumInLeavesVisitor extends TreeVis {
     }
 }
 
+/**
+ * tree visitor that calculates the product of
+ * all red node values in either branch or leaf
+ */
 class ProductOfRedNodesVisitor extends TreeVis {
 
     long result=1;
-    final int M=1000000007;
+    final int M=1000000007; // modul
+
     public int getResult(){
         return (int)result;
     }
+
     public void visitNode(TreeNode node){
         if(node.getColor()==Color.RED){
-            result=(result*node.getValue())%M;
+            result=(result*node.getValue()) % M;
         }
     }
     public void visitLeaf(TreeLeaf leaf){
         if(leaf.getColor()==Color.RED){
-            result=(result * leaf.getValue())%M;
+            result=(result * leaf.getValue()) % M;
         }
     }
-
-   /* private ArrayList<Tree> allRed = new ArrayList<>();
-
-    public int getResult() {
-        int prodcut = 1;
-        for (Tree red : allRed){
-            prodcut *= red.getValue();
-            if(prodcut == 0){
-                prodcut = 1;
-            }
-        }
-        return prodcut;
-    }
-
-    public void visitNode(TreeNode node) {
-        if(node.getColor() == Color.RED) allRed.add(node);
-
-    }
-
-    public void visitLeaf(TreeLeaf leaf) {
-        if(leaf.getColor() == Color.RED) allRed.add(leaf);
-
-    }*/
-
 }
 
+/**
+ * tree visitor that:
+ * calculates the sum of values for all nodes in a tree branch that are at even depth
+ * calculates the sum of values for all green nodes in a leaf node
+ * then subtracts even tree nodes from the green leaf nodes value
+ */
 class FancyVisitor extends TreeVis {
 
     private int sumNodesEvnDepth = 0;
     private int sumGrnLeaves = 0;
+
     public int getResult() {
         int diffCal = sumNodesEvnDepth - sumGrnLeaves;
         return Math.abs(diffCal);
@@ -175,22 +179,22 @@ public class JavaVisitorPattern {
     static int numOfNodes;
 
     public static Tree solve() {
-        String test = "5\n" +
-                "4 7 2 5 12\n" +
-                "0 1 0 0 1\n" +
-                "1 2\n" +
-                "1 3\n" +
-                "3 4\n" +
-                "3 5";
+        String test = "5\n" +      // number of nodes
+                "4 7 2 5 12\n" +  // node values
+                "0 1 0 0 1\n" +   // node colors
+                "1 2\n" +         // nod mapping node 1 <-- 2
+                "1 3\n" +        // nod mapping node 1 <-- 3
+                "3 4\n" +       // nod mapping node 3 <-- 4
+                "3 5";          // nod mapping node 3 <-- 5
 
 
         Scanner sc = new Scanner(test);
         numOfNodes = Integer.parseInt(sc.nextLine());
 
-         checkedNode = new boolean[numOfNodes];
-         nodeSet = new int[numOfNodes];
-         nodeColors = new Color[numOfNodes];
-         branchMap = new HashMap<>(numOfNodes);
+         checkedNode = new boolean[numOfNodes]; // nodes that have been checked
+         nodeSet = new int[numOfNodes]; // all nodes array
+         nodeColors = new Color[numOfNodes]; // all node colors array
+         branchMap = new HashMap<>(numOfNodes); // dictionary map of parent node value and its child nodes
 
         for (int i = 0; i < numOfNodes; i++) {
             nodeSet[i] = sc.nextInt();
@@ -200,24 +204,24 @@ public class JavaVisitorPattern {
         }
 
         for (int i = 0; i < numOfNodes - 1; i++) {
-            int u = sc.nextInt();
-            int v = sc.nextInt();
+            int u = sc.nextInt(); // left node
+            int v = sc.nextInt(); // right node
 
 //         Edges are undirected: Add 1st direction
-            HashSet<Integer> uNeighbors = branchMap.get(u);
+            HashSet<Integer> uNeighbors = branchMap.get(u); // get the left node neighbors list if exists
             if (uNeighbors == null) {
                 uNeighbors = new HashSet<>();
                 branchMap.put(u, uNeighbors);
             }
-            uNeighbors.add(v);
+            uNeighbors.add(v); // add the right node to set of nodes adjacent to left node
 
 //         Edges are undirected: Add 2nd direction
-            HashSet<Integer> vNeighbors = branchMap.get(v);
+            HashSet<Integer> vNeighbors = branchMap.get(v); // get the right node neighbors list if exists
             if (vNeighbors == null) {
                 vNeighbors = new HashSet<>();
                 branchMap.put(v, vNeighbors);
             }
-            vNeighbors.add(u);
+            vNeighbors.add(u); // add the left node to set of nodes adjacent to right node
         }
         sc.close();
 
@@ -235,18 +239,22 @@ public class JavaVisitorPattern {
     private static void addChildren(TreeNode parent, Integer parentNum) {
 //         Get HashSet of children and loop through them
         for (Integer treeNum : branchMap.get(parentNum)) {
-            branchMap.get(treeNum).remove(parentNum); // removes the opposite arrow direction
+            HashSet<Integer> childNodesOfCurrent = branchMap.get(treeNum);
+            childNodesOfCurrent.remove(parentNum); // removes the opposite arrow direction reference to parent node
 
-//         Add child
-            HashSet<Integer> grandChildren = branchMap.get(treeNum);
-            boolean childHasChild = (grandChildren != null && !grandChildren.isEmpty());
             Tree tree;
-            if (childHasChild) {
-                tree = new TreeNode(nodeSet[treeNum - 1], nodeColors[treeNum - 1], parent.getDepth() + 1);
-            } else {
-                tree = new TreeLeaf(nodeSet[treeNum - 1], nodeColors[treeNum - 1], parent.getDepth() + 1);
+//         Add child
+            boolean childHasChild = !childNodesOfCurrent.isEmpty();
+            if (childHasChild) { // it's a branch
+                tree = new TreeNode(nodeSet[treeNum - 1],
+                                    nodeColors[treeNum - 1],
+                              parent.getDepth() + 1);
+            } else { // it's a leaf
+                tree = new TreeLeaf(nodeSet[treeNum - 1],
+                                    nodeColors[treeNum - 1],
+                              parent.getDepth() + 1);
             }
-            parent.addChild(tree);
+            parent.addChild(tree); // update the parent node with new child 
 
 //         Recurse if necessary
             if (tree instanceof TreeNode) {
@@ -280,140 +288,3 @@ public class JavaVisitorPattern {
     }
 
 }
-/*
-class SumInLeavesVisitor extends TreeVis {
-    private int result = 0;
-
-    public int getResult() {
-        return result;
-    }
-
-    public void visitNode(TreeNode node) {
-        // do nothing
-    }
-
-    public void visitLeaf(TreeLeaf leaf) {
-        result += leaf.getValue();
-    }
-}
-
-class ProductOfRedNodesVisitor extends TreeVis {
-    private long result = 1;
-    private final int M = 1000000007;
-
-    public int getResult() {
-        return (int) result;
-    }
-
-    public void visitNode(TreeNode node) {
-        if (node.getColor() == Color.RED) {
-            result = (result * node.getValue()) % M;
-        }
-    }
-
-    public void visitLeaf(TreeLeaf leaf) {
-        if (leaf.getColor() == Color.RED) {
-            result = (result * leaf.getValue()) % M;
-        }
-    }
-}
-
-class FancyVisitor extends TreeVis {
-    private int nonLeafEvenDepthSum = 0;
-    private int greenLeavesSum = 0;
-
-    public int getResult() {
-        return Math.abs(nonLeafEvenDepthSum - greenLeavesSum);
-    }
-
-    public void visitNode(TreeNode node) {
-        if (node.getDepth() % 2 == 0) {
-            nonLeafEvenDepthSum += node.getValue();
-        }
-    }
-
-    public void visitLeaf(TreeLeaf leaf) {
-        if (leaf.getColor() == Color.GREEN) {
-            greenLeavesSum += leaf.getValue();
-        }
-    }
-}
-
-public class Solution {
-    private static int [] values;
-    private static Color [] colors;
-    private static HashMap<Integer, HashSet<Integer>> map;
-
-    public static Tree solve() {
-        Scanner scan = new Scanner(System.in);
-        int numNodes = scan.nextInt();
-
-//         Read and save nodes and colors
-        values = new int[numNodes];
-                colors = new Color[numNodes];
-                map = new HashMap<>(numNodes);
-        for (int i = 0; i < numNodes; i++) {
-        values[i] = scan.nextInt();
-        }
-        for (int i = 0; i < numNodes; i++) {
-        colors[i] = scan.nextInt() == 0 ? Color.RED : Color.GREEN;
-        }
-
-//         Save edges
-        for (int i = 0; i < numNodes - 1; i++) {
-        int u = scan.nextInt();
-        int v = scan.nextInt();
-
-//         Edges are undirected: Add 1st direction
-        HashSet<Integer> uNeighbors = map.get(u);
-        if (uNeighbors == null) {
-        uNeighbors = new HashSet<>();
-        map.put(u, uNeighbors);
-        }
-        uNeighbors.add(v);
-
-//         Edges are undirected: Add 2nd direction
-        HashSet<Integer> vNeighbors = map.get(v);
-        if (vNeighbors == null) {
-        vNeighbors = new HashSet<>();
-        map.put(v, vNeighbors);
-        }
-        vNeighbors.add(u);
-        }
-        scan.close();
-
-//         Handle 1-node tree
-        if (numNodes == 1) {
-        return new TreeLeaf(values[0], colors[0], 0);
-        }
-
-//         Create Tree
-        TreeNode root = new TreeNode(values[0], colors[0], 0);
-        addChildren(root, 1);
-        return root;
-        }
-
-// Recursively adds children of a TreeNode
-private static void addChildren(TreeNode parent, Integer parentNum) {
-//         Get HashSet of children and loop through them
-        for (Integer treeNum : map.get(parentNum)) {
-        map.get(treeNum).remove(parentNum); // removes the opposite arrow direction
-
-//         Add child
-        HashSet<Integer> grandChildren = map.get(treeNum);
-        boolean childHasChild = (grandChildren != null && !grandChildren.isEmpty());
-        Tree tree;
-        if (childHasChild) {
-        tree = new TreeNode(values[treeNum - 1], colors[treeNum - 1], parent.getDepth() + 1);
-        } else {
-        tree = new TreeLeaf(values[treeNum - 1], colors[treeNum - 1], parent.getDepth() + 1);
-        }
-        parent.addChild(tree);
-
-//         Recurse if necessary
-        if (tree instanceof TreeNode) {
-        addChildren((TreeNode) tree, treeNum);
-        }
-        }
-        }
- */
