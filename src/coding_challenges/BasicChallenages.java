@@ -16,11 +16,13 @@ public class BasicChallenages {
         String palindromeTst2 = "jmmj";
         String palindromeTst3 = "jmjmj";
         String palindromeTst4 = "jmjjmj";
+        String palindromeTst5 = "montm";
         Palindrome plndrm = new Palindrome();
         System.out.println(palindromeTst1 + " is palindrome: " + plndrm.isItPalindrome(palindromeTst1));
         System.out.println(palindromeTst2 + " is palindrome: " +plndrm.isItPalindrome(palindromeTst2));
         System.out.println(palindromeTst3 + " is palindrome: " +plndrm.isItPalindrome(palindromeTst3));
         System.out.println(palindromeTst4 + " is palindrome: " +plndrm.isItPalindrome(palindromeTst4));
+        System.out.println(palindromeTst5 + " is palindrome: " +plndrm.isItPalindrome(palindromeTst5));
 
         int factorialNum = 10;
         Factorial fac = new Factorial();
@@ -52,7 +54,6 @@ public class BasicChallenages {
             T currentItem = arr[count];
             arr[count] = arr[countDecrement];
             arr[countDecrement] = currentItem;
-
             return applyReverse(++count);
         }
     }
@@ -62,29 +63,20 @@ public class BasicChallenages {
 
         boolean isItPalindrome(String palindromeStr){
 
-            int lengthHalf = palindromeStr.length() / 2  ;
+            int lengthHalf = palindromeStr.length() / 2;
             int matches = 0;
-            int offsetMidPoint = 0;
 
-            if(!(palindromeStr.length() % 2 == 0))
-                offsetMidPoint = 1;
-
-            String[] set1 = palindromeStr.substring(0, lengthHalf).split("");
-            String[] set2 = palindromeStr.substring(lengthHalf + offsetMidPoint).split("");
-
-
-            for (int i = 0 ; i < set1.length; i++){
-                if(set1[i].equalsIgnoreCase(set2[set2.length - 1 - i])){
-                    matches++;
-                }
+            for (int i = 0 ; i < lengthHalf ;i++){
+               if( palindromeStr.charAt(i) == palindromeStr.charAt(palindromeStr.length() - 1 - i)){
+                   matches++;
+               }
             }
-
-            return matches == set1.length && matches == set2.length;
+            return matches == lengthHalf;
         }
     }
 
+    // recursive factorial
     static class Factorial{
-
         int factorial(int n){
             if (n == 0)
                 return 1;

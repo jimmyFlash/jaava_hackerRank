@@ -29,13 +29,23 @@ class EmojiMazesolver {
             "🎈"
     };
 
+    private static final String[] emojiMaze2 = new String[] {
+            "😁:😁:🎂:🍔:🎉:🎁," +
+                    "🎂:😁:😁:🎈:🎈:🎁," +
+                    "🎈:🎈:🎈:😉:🎈:🎈," +
+                    "🎈:🎊:😁:😁:🎈:🎁," +
+                    "🎈:🎈:🎈:🎈:🎈:🎁," +
+                    "🎉:🎊:😁:😁:🎈:🎁",
+            "🎈"
+    };
+
     private static final String[] emojiMazeNonSolvable = new String[] {
             "😁:😁:🎂:🍔:🎉:🎁," +
             "🎂:😁:😁:🎈:🎈:🎁," +
             "🎈:🎈:🎈:😉:🎈:🎁," +
-            "🎈:🎊:😁:😁:🍗:🎁," +
+            "🎈:🎊:😁:😁:🎈:🎁," +
             "🎈:🎈:🎈:🎈:🎈:🎁," +
-            "🎉:🎊:😁:😁:🎈:🎈",
+            "🎉:🎊:😁:😁:🎈:🎁",
             "🎈"
     };
 
@@ -53,7 +63,8 @@ class EmojiMazesolver {
          ROW = 6;
          COLUMN = 6;
 
-        emojiMazeSolver(emojiMaze);
+        emojiMazeSolver(emojiMaze2);
+        emojiMazeSolver(emojiMazeNonSolvable);
     }
 
 
@@ -339,7 +350,7 @@ class EmojiMazesolver {
                                          String[][] emojiMatrix,
                                          List<EmojiMatrixNode> checkerList){
 
-        System.out.println("CURRENT recursive iteration " + i + ", " + j + "," + Thread.currentThread().getName());
+//        System.out.println("CURRENT recursive iteration " + i + ", " + j + "," + Thread.currentThread().getName());
 
 
 
@@ -351,31 +362,35 @@ class EmojiMazesolver {
             EmojiMatrixNode matchEmoji;
             if (isValidAndNotVisited(i + 1, j, visitedPositions) &&
                     Objects.equals(emojiMatrix[i + 1][j], emoji)){
-                System.out.println("Found " + emojiMatrix[i + 1][j] + ", at " + "," + (i + 1) + ", " + (j));
-                if (!checkMazeSolvedOrProceed(checkerList, emoji, i + 1, j ))
-                    solveEmojiMatrix(emoji ,i+1, j, visitedPositions, emojiMatrix, checkerList);
+                if (!checkMazeSolvedOrProceed(checkerList, emoji, i + 1, j )) {
+                    System.out.println("Found " + emojiMatrix[i + 1][j] + ", at " + "," + (i + 1) + ", " + (j));
+                    solveEmojiMatrix(emoji, i + 1, j, visitedPositions, emojiMatrix, checkerList);
+                }
             }
 
 
             if (isValidAndNotVisited(i, j + 1, visitedPositions) &&
                     Objects.equals(emojiMatrix[i ][j + 1], emoji)){
-                System.out.println("Found " + emojiMatrix[i][j+1] + ", at " + "," + (i) + ", " + (j+1));
-                if (!checkMazeSolvedOrProceed(checkerList, emoji, i, j + 1 ))
-                    solveEmojiMatrix(emoji ,i, j + 1, visitedPositions, emojiMatrix, checkerList);
+                if (!checkMazeSolvedOrProceed(checkerList, emoji, i, j + 1 )) {
+                    System.out.println("Found " + emojiMatrix[i][j+1] + ", at " + "," + (i) + ", " + (j+1));
+                    solveEmojiMatrix(emoji, i, j + 1, visitedPositions, emojiMatrix, checkerList);
+                }
             }
 
             if (isValidAndNotVisited(i - 1, j , visitedPositions) &&
                     Objects.equals(emojiMatrix[i - 1][j], emoji)){
-                System.out.println("Found " + emojiMatrix[i - 1][j] + ", at " + "," + (i - 1) + ", " + (j));
-                if (!checkMazeSolvedOrProceed(checkerList, emoji, i - 1, j ))
-                    solveEmojiMatrix(emoji ,i - 1, j, visitedPositions, emojiMatrix, checkerList);
+                if (!checkMazeSolvedOrProceed(checkerList, emoji, i - 1, j )) {
+                    System.out.println("Found " + emojiMatrix[i - 1][j] + ", at " + "," + (i - 1) + ", " + (j));
+                    solveEmojiMatrix(emoji, i - 1, j, visitedPositions, emojiMatrix, checkerList);
+                }
             }
 
             if (isValidAndNotVisited(i, j - 1 , visitedPositions) &&
                     Objects.equals(emojiMatrix[i ][j - 1], emoji)){
-                System.out.println("Found " + emojiMatrix[i ][j -1] + ", at " + "," + (i ) + ", " + (j-1));
-                if (!checkMazeSolvedOrProceed(checkerList, emoji, i , j - 1 ))
-                    solveEmojiMatrix(emoji ,i , j - 1, visitedPositions, emojiMatrix, checkerList);
+                if (!checkMazeSolvedOrProceed(checkerList, emoji, i , j - 1 )) {
+                    System.out.println("Found " + emojiMatrix[i ][j -1] + ", at " + "," + (i ) + ", " + (j-1));
+                    solveEmojiMatrix(emoji, i, j - 1, visitedPositions, emojiMatrix, checkerList);
+                }
             }
         }
 
