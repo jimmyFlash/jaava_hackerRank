@@ -85,13 +85,6 @@ public class BinaryTreeMaxHeapCheck {
         // children, and same is
         // recursively true for the
         // children
-        if (arr[i] >= arr[leftChildNode(i)]
-                && arr[i] >= arr[rightChildNode(i)]
-                && isHeap(arr, leftChildNode(i), n)
-                && isHeap(arr, rightChildNode(i), n)) {
-
-        }
-
         return arr[i] >= arr[leftChildNode(i)]
                 && arr[i] >= arr[rightChildNode(i)]
                 && isHeap(arr, leftChildNode(i), n)

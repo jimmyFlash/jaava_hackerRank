@@ -43,6 +43,7 @@ abstract class Tree {
         return depth;
     }
 
+    // visitor pattern implementation
     public abstract void accept(TreeVis visitor);
 
 }
@@ -102,6 +103,7 @@ abstract class TreeVis
 
 /**
  * tree visitor that sums the number of leaves in a tree branch
+ * implements the TreeVis interface
  */
 class SumInLeavesVisitor extends TreeVis {
     int leafValue = 0;
@@ -109,6 +111,7 @@ class SumInLeavesVisitor extends TreeVis {
         return leafValue;
     }
 
+    // redundant since this applies to leaves
     public void visitNode(TreeNode node) {
     }
 
@@ -121,11 +124,14 @@ class SumInLeavesVisitor extends TreeVis {
 /**
  * tree visitor that calculates the product of
  * all red node values in either branch or leaf
+ * implements the TreeVis interface
  */
 class ProductOfRedNodesVisitor extends TreeVis {
 
     long result=1;
-    final int M=1000000007; // modul
+
+    // limit on integer
+    final int M=1_000_000_007; // modul
 
     public int getResult(){
         return (int)result;
@@ -197,10 +203,10 @@ public class JavaVisitorPattern {
          branchMap = new HashMap<>(numOfNodes); // dictionary map of parent node value and its child nodes
 
         for (int i = 0; i < numOfNodes; i++) {
-            nodeSet[i] = sc.nextInt();
+            nodeSet[i] = sc.nextInt(); // store node values in array
         }
         for (int i = 0; i < numOfNodes; i++) {
-            nodeColors[i] = sc.nextInt() == 0 ? Color.RED : Color.GREEN;
+            nodeColors[i] = sc.nextInt() == 0 ? Color.RED : Color.GREEN; // store node colors 0 or 1 only
         }
 
         for (int i = 0; i < numOfNodes - 1; i++) {
@@ -209,6 +215,7 @@ public class JavaVisitorPattern {
 
 //         Edges are undirected: Add 1st direction
             HashSet<Integer> uNeighbors = branchMap.get(u); // get the left node neighbors list if exists
+            // create a new hashset for each node if not found neighbors if not found or store if one is already created
             if (uNeighbors == null) {
                 uNeighbors = new HashSet<>();
                 branchMap.put(u, uNeighbors);
@@ -227,7 +234,7 @@ public class JavaVisitorPattern {
 
         //         Handle 1-node tree
         if (numOfNodes == 1) {
-            return new TreeLeaf(nodeSet[0], nodeColors[0], 0);
+            return new TreeLeaf(nodeSet[0], nodeColors[0], 0); // return a TreeLeaf instance
         }
         //         Create Tree
         TreeNode root = new TreeNode(nodeSet[0], nodeColors[0], 0);

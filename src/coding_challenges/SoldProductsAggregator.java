@@ -10,9 +10,14 @@ import java.util.stream.Stream;
 
 public class SoldProductsAggregator {
 
-    private final EURExchangeService exchangeService; // interface
+    private final EURExchangeService exchangeServiceImpl; // interface
 
     public static final String CURR = "EUR"; // default currency label
+
+    // constructor
+    private SoldProductsAggregator(EURExchangeService EURExchangeService) {
+        this.exchangeServiceImpl = EURExchangeService;
+    }
 
 
     public  static void main(String[] args) {
@@ -67,11 +72,6 @@ public class SoldProductsAggregator {
     }
 
 
-    // constructor
-    private SoldProductsAggregator(EURExchangeService EURExchangeService) {
-        this.exchangeService = EURExchangeService;
-    }
-
     /**
      * processes the stream of sold products into a list of SimpleSoldProduct
      * then calculates the sum of the SimpleSoldProduct price
@@ -99,7 +99,7 @@ public class SoldProductsAggregator {
      * @return a bigDecimal representing formatted number based on currency or the original price if error
      */
     private BigDecimal applyRateconversion(BigDecimal prodPrice){
-        Optional<BigDecimal> euroRate =  this.exchangeService.rate(prodPrice,CURR);
+        Optional<BigDecimal> euroRate =  this.exchangeServiceImpl.rate(prodPrice,CURR);
         return euroRate.orElse(prodPrice);
     }
 }

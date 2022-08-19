@@ -28,6 +28,11 @@ public class BasicChallenages {
         Factorial fac = new Factorial();
         System.out.println(factorialNum + "! = " + fac.factorial(factorialNum));
 
+        int fib = 5;
+        Fibonacci fb = new Fibonacci();
+        fb.intArr(fib);
+        System.out.println(fb.calculateFib(fb.intArr.length));
+
 
     }
 
@@ -80,9 +85,31 @@ public class BasicChallenages {
         int factorial(int n){
             if (n == 0)
                 return 1;
-            else
-                return(n * factorial(n-1));
+
+            return(n * factorial(n-1));
         }
 
+    }
+
+    static class Fibonacci{
+
+        int[] intArr;
+
+        int[] intArr(int n){
+            intArr =  new int[n + 1];
+            intArr[1] = 1;
+            intArr[2] = 1;
+
+            return intArr;
+        }
+        // 0,1,2,3,4,5,6,7,8
+        // 0,1,1,2,3,5,8,13,21
+        int calculateFib(int n){
+            if(n <= 2){
+                return 1;
+            }
+            intArr[n] = calculateFib(n -1) + calculateFib(n -2);
+            return intArr[n];
+        }
     }
 }
